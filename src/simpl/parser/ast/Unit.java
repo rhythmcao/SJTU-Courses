@@ -14,12 +14,10 @@ public class Unit extends Expr {
         return "()";
     }
 
-    @Override
     public TypeResult typecheck(TypeEnv E) throws TypeError {
         return TypeResult.of(Type.UNIT);
     }
 
-    @Override
     public Value eval(State s) throws RuntimeError {
         return Value.UNIT;
     }

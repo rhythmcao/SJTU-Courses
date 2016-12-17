@@ -15,7 +15,17 @@ import simpl.typing.TypeResult;
 public class snd extends FunValue {
 
     public snd() {
-        // TODO
-        super(null, null, null);
+        super(Env.empty, Symbol.symbol("_pair_snd"), new Expr(){
+            public TypeResult typecheck(TypeEnv E)throws TypeError{
+                return null;
+            }
+            public Value eval(State s)throws RuntimeError{
+                Value v=s.E.get(Symbol.symbol("_pair_snd"));
+                if(v instanceof PairValue){
+                    return ((PairValue)v).v2;
+                }
+                throw new RuntimeError("snd can only be applied on pairs");
+            }
+        });
     }
 }

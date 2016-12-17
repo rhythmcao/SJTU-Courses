@@ -13,9 +13,11 @@ public class PairValue extends Value {
         return "pair@" + v1 + "@" + v2;
     }
 
-    @Override
     public boolean equals(Object other) {
-        // TODO
+        if(other instanceof PairValue){
+            PairValue tmp=(PairValue)other;
+            return (v1.equals(tmp.v1))&&(v2.equals(tmp.v2));
+        }
         return false;
     }
 }

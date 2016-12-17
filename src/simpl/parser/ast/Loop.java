@@ -23,15 +23,20 @@ public class Loop extends Expr {
         return "(while " + e1 + " do " + e2 + ")";
     }
 
-    @Override
     public TypeResult typecheck(TypeEnv E) throws TypeError {
-        // TODO
-        return null;
+        TypeResult e1Res=e1.typecheck(E);
+        Substitution s0=e1Res.s;
+        Substitution s1=e1Res.t.unify(Type.BOOL);
+        s1=s1.compose(s0);
+        TypeResult e2Res=e2.typecheck(s1.compose(E));
+        Substitution s2=e2Res.s;
+        Substitution s3=e2Res.t.unify(Type.UNIT);
+        return TypeResult.of(s3.compose(s2.compose(s1)),Type.UNIT);
     }
 
-    @Override
     public Value eval(State s) throws RuntimeError {
-        // TODO
-        return null;
+        while(e1.eval(s).equals(Value.TRUE))
+            e2.eval(s);
+        return Value.UNIT;
     }
 }

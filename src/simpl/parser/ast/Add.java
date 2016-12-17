@@ -15,9 +15,9 @@ public class Add extends ArithExpr {
         return "(" + l + " + " + r + ")";
     }
 
-    @Override
     public Value eval(State s) throws RuntimeError {
-        // TODO
-        return null;
+        IntValue lval=(IntValue)l.eval(s);
+        IntValue rval=(IntValue)r.eval(s);
+        return new IntValue(lval.n+rval.n);
     }
 }

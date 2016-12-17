@@ -20,15 +20,14 @@ public class Neg extends UnaryExpr {
         return "~" + e;
     }
 
-    @Override
     public TypeResult typecheck(TypeEnv E) throws TypeError {
-        // TODO
-        return null;
+        TypeResult Res=e.typecheck(E);
+        Substitution s1=Res.t.unify(Type.INT);
+        return TypeResult.of(s1.compose(Res.s),Type.INT);
     }
 
-    @Override
     public Value eval(State s) throws RuntimeError {
-        // TODO
-        return null;
+        IntValue iv=(IntValue)e.eval(s);
+        return new IntValue(-iv.n);
     }
 }

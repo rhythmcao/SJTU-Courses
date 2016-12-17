@@ -5,6 +5,7 @@ import simpl.interpreter.RuntimeError;
 import simpl.interpreter.State;
 import simpl.interpreter.Value;
 import simpl.parser.Symbol;
+import simpl.typing.Substitution;
 import simpl.typing.Type;
 import simpl.typing.TypeEnv;
 import simpl.typing.TypeError;
@@ -22,15 +23,19 @@ public class Name extends Expr {
         return "" + x;
     }
 
-    @Override
     public TypeResult typecheck(TypeEnv E) throws TypeError {
-        // TODO
-        return null;
+        Type t=E.get(x);
+        if(t==null)
+            throw new TypeError("Undefined identifier");
+        else return TypeResult.of(Substitution.IDENTITY,t);
     }
 
-    @Override
     public Value eval(State s) throws RuntimeError {
-        // TODO
-        return null;
+        Value v=s.E.get(x);
+        if(v==null)
+            throw new RuntimeError("Name \""+x+"\" is not defined");
+        if(v instanceof RecValue)
+            return ((RecValue)v).e.eval(s);
+        return v;
     }
 }

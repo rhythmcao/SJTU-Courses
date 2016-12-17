@@ -12,9 +12,10 @@ public class RefValue extends Value {
         return "ref@" + p;
     }
 
-    @Override
     public boolean equals(Object other) {
-        // TODO
+        if(other instanceof RefValue)
+            if(((RefValue) other).p==this.p)
+                return true;
         return false;
     }
 }

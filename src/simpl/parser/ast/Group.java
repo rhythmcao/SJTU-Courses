@@ -17,12 +17,10 @@ public class Group extends UnaryExpr {
         return "" + e;
     }
 
-    @Override
     public TypeResult typecheck(TypeEnv E) throws TypeError {
         return e.typecheck(E);
     }
 
-    @Override
     public Value eval(State s) throws RuntimeError {
         return e.eval(s);
     }

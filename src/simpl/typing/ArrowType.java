@@ -9,28 +9,30 @@ public final class ArrowType extends Type {
         this.t2 = t2;
     }
 
-    @Override
     public boolean isEqualityType() {
-        // TODO
         return false;
     }
 
-    @Override
     public Substitution unify(Type t) throws TypeError {
-        // TODO
-        return null;
+        if(t instanceof TypeVar)
+            return t.unify(this);
+        if(t instanceof ArrowType){
+            Substitution s1=this.t1.unify(((ArrowType)t).t1);
+            s1.apply(this.t2);
+            Substitution s2=s1.apply(this.t2).unify(s1.apply(((ArrowType)t).t2));
+            return s2.compose(s1);
+        }
+        throw new TypeMismatchError();
     }
 
-    @Override
     public boolean contains(TypeVar tv) {
-        // TODO
-        return false;
+        return t1.contains(tv)||t2.contains(tv);
     }
 
-    @Override
     public Type replace(TypeVar a, Type t) {
-        // TODO
-        return null;
+        Type newT1=t1.replace(a, t);
+        Type newT2=t2.replace(a, t);
+        return new ArrowType(newT1,newT2);
     }
 
     public String toString() {

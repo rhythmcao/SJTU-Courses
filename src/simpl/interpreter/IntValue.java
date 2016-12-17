@@ -12,9 +12,11 @@ public class IntValue extends Value {
         return "" + n;
     }
 
-    @Override
     public boolean equals(Object other) {
-        // TODO
+        if(other instanceof IntValue)
+            if(((IntValue)other).n==this.n)
+                return true;
+            else return false;
         return false;
     }
 }

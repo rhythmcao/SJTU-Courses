@@ -15,7 +15,17 @@ import simpl.typing.TypeResult;
 public class fst extends FunValue {
 
     public fst() {
-        // TODO
-        super(null, null, null);
+        super(Env.empty, Symbol.symbol("_pair_fst"), new Expr(){
+            public TypeResult typecheck(TypeEnv E)throws TypeError{
+                return null;
+            }
+            public Value eval(State s)throws RuntimeError{
+                Value v=s.E.get(Symbol.symbol("_pair_fst"));
+                if(v instanceof PairValue){
+                    return ((PairValue)v).v1;
+                }
+                throw new RuntimeError("fst can only be applied on pairs");
+            }
+        });
     }
 }

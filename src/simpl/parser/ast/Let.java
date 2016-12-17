@@ -24,15 +24,15 @@ public class Let extends Expr {
         return "(let " + x + " = " + e1 + " in " + e2 + ")";
     }
 
-    @Override
     public TypeResult typecheck(TypeEnv E) throws TypeError {
-        // TODO
-        return null;
+        TypeResult e1Res=e1.typecheck(E);
+        TypeResult e2Res=e2.typecheck(TypeEnv.of(e1Res.s.compose(E), x, e1Res.t));
+        return TypeResult.of(e2Res.s.compose(e1Res.s),e2Res.t);
     }
 
-    @Override
     public Value eval(State s) throws RuntimeError {
-        // TODO
-        return null;
+        Value v1=e1.eval(s);
+        Value v2=e2.eval(State.of(new Env(s.E,this.x,v1), s.M, s.p));
+        return v2;
     }
 }

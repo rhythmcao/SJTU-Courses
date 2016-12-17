@@ -15,7 +15,17 @@ import simpl.typing.TypeResult;
 public class tl extends FunValue {
 
     public tl() {
-        // TODO
-        super(null, null, null);
+        super(Env.empty, Symbol.symbol("_list_tl"), new Expr(){
+            public TypeResult typecheck(TypeEnv E)throws TypeError{
+                return null;
+            }
+            public Value eval(State s)throws RuntimeError{
+                Value v=s.E.get(Symbol.symbol("_list_tl"));
+                if(v instanceof ConsValue){
+                    return ((ConsValue)v).v2;
+                }
+                throw new RuntimeError("tl can only be applied on lists");
+            }
+        });
     }
 }

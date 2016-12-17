@@ -27,15 +27,17 @@ public class Rec extends Expr {
         return "(rec " + x + "." + e + ")";
     }
 
-    @Override
     public TypeResult typecheck(TypeEnv E) throws TypeError {
-        // TODO
-        return null;
+        TypeVar tv=new TypeVar(false);
+        TypeResult Res=e.typecheck(TypeEnv.of(E, x, tv));
+        Substitution s1=Res.t.unify(Res.s.apply(tv));
+        s1=s1.compose(Res.s);
+        return TypeResult.of(s1,s1.apply(tv));
     }
 
-    @Override
     public Value eval(State s) throws RuntimeError {
-        // TODO
-        return null;
+        RecValue rv=new RecValue(s.E,x,e);
+        Env env=new Env(s.E,x,rv);
+        return e.eval(State.of(env, s.M, s.p));
     }
 }

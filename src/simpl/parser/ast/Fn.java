@@ -26,15 +26,13 @@ public class Fn extends Expr {
         return "(fn " + x + "." + e + ")";
     }
 
-    @Override
     public TypeResult typecheck(TypeEnv E) throws TypeError {
-        // TODO
-        return null;
+        TypeVar tv=new TypeVar(false);
+        TypeResult Res=e.typecheck(TypeEnv.of(E, x, tv));
+        return TypeResult.of(Res.s,new ArrowType(Res.s.apply(tv),Res.t));
     }
 
-    @Override
     public Value eval(State s) throws RuntimeError {
-        // TODO
-        return null;
+        return new FunValue(s.E.clone(),x,e);
     }
 }

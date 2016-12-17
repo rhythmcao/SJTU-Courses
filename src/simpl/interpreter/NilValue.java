@@ -9,9 +9,7 @@ class NilValue extends Value {
         return "nil";
     }
 
-    @Override
     public boolean equals(Object other) {
-        // TODO
-        return false;
+        return other instanceof NilValue;
     }
 }

@@ -14,30 +14,34 @@ public class TypeVar extends Type {
         name = Symbol.symbol("tv" + ++tvcnt);
     }
 
-    @Override
     public boolean isEqualityType() {
         return equalityType;
     }
 
-    @Override
     public Substitution unify(Type t) throws TypeCircularityError {
-        // TODO
-        return null;
+        if(t instanceof TypeVar){
+            return Substitution.of(this, t);
+        }
+        if(t.contains(this)){
+            throw new TypeCircularityError();
+        }else{
+            return Substitution.of(this, t);
+        }
     }
 
     public String toString() {
         return "" + name;
     }
 
-    @Override
     public boolean contains(TypeVar tv) {
-        // TODO
-        return false;
+        if(this.name.equals(tv.name))
+            return true;
+        else return false;
     }
 
-    @Override
     public Type replace(TypeVar a, Type t) {
-        // TODO
-        return null;
+        if(a.name.equals(this.name))
+            return t;
+        else return this;
     }
 }

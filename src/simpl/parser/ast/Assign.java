@@ -21,15 +21,21 @@ public class Assign extends BinaryExpr {
         return l + " := " + r;
     }
 
-    @Override
     public TypeResult typecheck(TypeEnv E) throws TypeError {
-        // TODO
-        return null;
+        TypeResult rRes=r.typecheck(E);
+        Substitution s1=rRes.s;
+        Type t1=rRes.t;
+        TypeResult lRes=l.typecheck(s1.compose(E));
+        Substitution s2=lRes.s;
+        Type t2=lRes.t;
+        Substitution s3=t2.unify(new RefType(s2.apply(t1)));
+        return TypeResult.of(s3.compose(s2.compose(s1)),Type.UNIT);
     }
 
-    @Override
     public Value eval(State s) throws RuntimeError {
-        // TODO
-        return null;
+        RefValue rv=(RefValue)l.eval(s);
+        Value v=r.eval(s);
+        s.M.put(rv.p, v);
+        return Value.UNIT;
     }
 }

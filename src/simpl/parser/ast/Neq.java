@@ -15,9 +15,9 @@ public class Neq extends EqExpr {
         return "(" + l + " <> " + r + ")";
     }
 
-    @Override
     public Value eval(State s) throws RuntimeError {
-        // TODO
-        return null;
+        Value lv=l.eval(s);
+        Value rv=r.eval(s);
+        return new BoolValue(!(lv.equals(rv)));
     }
 }

@@ -19,15 +19,15 @@ public class Pair extends BinaryExpr {
         return "(pair " + l + " " + r + ")";
     }
 
-    @Override
     public TypeResult typecheck(TypeEnv E) throws TypeError {
-        // TODO
-        return null;
+        TypeResult lRes=l.typecheck(E);
+        TypeResult rRes=r.typecheck(lRes.s.compose(E));
+        return TypeResult.of(rRes.s.compose(lRes.s),new PairType(lRes.t,rRes.t));
     }
 
-    @Override
     public Value eval(State s) throws RuntimeError {
-        // TODO
-        return null;
+        Value lv=l.eval(s);
+        Value rv=r.eval(s);
+        return new PairValue(lv,rv);
     }
 }

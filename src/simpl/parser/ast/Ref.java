@@ -1,5 +1,6 @@
 package simpl.parser.ast;
 
+import simpl.interpreter.Int;
 import simpl.interpreter.RefValue;
 import simpl.interpreter.RuntimeError;
 import simpl.interpreter.State;
@@ -8,6 +9,7 @@ import simpl.typing.RefType;
 import simpl.typing.TypeEnv;
 import simpl.typing.TypeError;
 import simpl.typing.TypeResult;
+import sun.security.timestamp.TSRequest;
 
 public class Ref extends UnaryExpr {
 
@@ -19,15 +21,16 @@ public class Ref extends UnaryExpr {
         return "(ref " + e + ")";
     }
 
-    @Override
     public TypeResult typecheck(TypeEnv E) throws TypeError {
-        // TODO
-        return null;
+        TypeResult Res=e.typecheck(E);
+        return TypeResult.of(Res.s,new RefType(Res.t));
     }
 
-    @Override
     public Value eval(State s) throws RuntimeError {
-        // TODO
-        return null;
+        Value v=e.eval(s);
+        Int p=s.p;
+        s.p.set(p.get()+1);
+        s.M.put(p.get(), v);
+        return new RefValue(p.get());
     }
 }

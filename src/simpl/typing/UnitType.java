@@ -5,12 +5,10 @@ final class UnitType extends Type {
     protected UnitType() {
     }
 
-    @Override
     public boolean isEqualityType() {
         return false;
     }
 
-    @Override
     public Substitution unify(Type t) throws TypeError {
         if (t instanceof TypeVar) {
             return t.unify(this);
@@ -21,12 +19,10 @@ final class UnitType extends Type {
         throw new TypeMismatchError();
     }
 
-    @Override
     public boolean contains(TypeVar tv) {
         return false;
     }
 
-    @Override
     public Type replace(TypeVar a, Type t) {
         return Type.UNIT;
     }

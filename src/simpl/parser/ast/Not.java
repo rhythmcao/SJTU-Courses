@@ -20,15 +20,16 @@ public class Not extends UnaryExpr {
         return "(not " + e + ")";
     }
 
-    @Override
     public TypeResult typecheck(TypeEnv E) throws TypeError {
-        // TODO
-        return null;
+        TypeResult Res=e.typecheck(E);
+        Substitution s1=Res.t.unify(Type.BOOL);
+        return TypeResult.of(s1.compose(Res.s),Type.BOOL);
     }
 
-    @Override
     public Value eval(State s) throws RuntimeError {
-        // TODO
-        return null;
+        BoolValue bv=(BoolValue)e.eval(s);
+        if(bv.equals(Value.TRUE))
+            return Value.FALSE;
+        else return Value.TRUE;
     }
 }

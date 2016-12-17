@@ -9,9 +9,7 @@ class UnitValue extends Value {
         return "unit";
     }
 
-    @Override
     public boolean equals(Object other) {
-        // TODO
-        return false;
+        return other instanceof UnitValue;
     }
 }
