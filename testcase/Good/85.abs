@@ -1,0 +1,32 @@
+SeqExp(
+ ExpList(
+  CallExp(printi,
+   ExpList(
+    OpExp(
+     LT,
+     StringExp(abc),
+     StringExp(abbbbbb)))),
+  ExpList(
+   CallExp(print,
+    ExpList(
+     StringExp(
+))),
+   ExpList(
+    CallExp(printi,
+     ExpList(
+      OpExp(
+       NE,
+       StringExp(abd),
+       StringExp(abdccccccc)))),
+    ExpList(
+     CallExp(print,
+      ExpList(
+       StringExp(
+))),
+     ExpList(
+      CallExp(printi,
+       ExpList(
+        OpExp(
+         GT,
+         StringExp(abddd),
+         StringExp(abd))))))))))

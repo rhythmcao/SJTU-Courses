@@ -1,0 +1,56 @@
+LetExp(
+ DecList(
+  TypeDec(strings,
+   RecordTy(
+    Fieldlist(
+     hd
+     string,
+     true,
+     Fieldlist(
+      tl
+      strings,
+      true,
+      Fieldlist())))),
+  DecList(
+   VarDec(xs,
+    RecordExp(strings,
+     FieldExpList(
+hd,
+      StringExp(foo),
+      FieldExpList(
+tl,
+       NilExp(),
+       FieldExpList()))),
+    true),
+   DecList(
+    VarDec(ys,
+     varExp(
+      SimpleVar(xs)),
+     true),
+    DecList()))),
+ SeqExp(
+  ExpList(
+   CallExp(print,
+    ExpList(
+     varExp(
+      FieldVar(
+       SimpleVar(ys),
+       hd)))),
+   ExpList(
+    AssignExp(
+     FieldVar(
+      SimpleVar(xs),
+      hd),
+     StringExp(bar)),
+    ExpList(
+     CallExp(print,
+      ExpList(
+       varExp(
+        FieldVar(
+         SimpleVar(ys),
+         hd)))),
+     ExpList(
+      CallExp(print,
+       ExpList(
+        StringExp(
+)))))))))

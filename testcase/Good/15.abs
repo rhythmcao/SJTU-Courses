@@ -1,0 +1,17 @@
+LetExp(
+ DecList(
+  FunctionDec(p
+   Fieldlist(
+    x
+    string,
+    true,
+    Fieldlist()),
+   SeqExp(
+    ExpList()),
+   FunctionDec()),
+  DecList()),
+ SeqExp(
+  ExpList(
+   CallExp(p,
+    ExpList(
+     StringExp(frabjous))))))

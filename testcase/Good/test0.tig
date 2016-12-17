@@ -1,0 +1,12 @@
+/*let
+ var a:string:="a"
+ var b:string:="b"
+ var c:string:="a"
+ in
+ if(a<>c)
+ then
+ print("succeed")
+ else
+ print("false")
+ end*/
+ ()

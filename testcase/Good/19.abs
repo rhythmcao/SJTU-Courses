@@ -1,0 +1,35 @@
+LetExp(
+ DecList(
+  VarDec(x,
+   IntExp(0),
+   true),
+  DecList()),
+ SeqExp(
+  ExpList(
+   WhileExp(
+    OpExp(
+     LT,
+     varExp(
+      SimpleVar(x)),
+     IntExp(10)),
+    SeqExp(
+     ExpList(
+      AssignExp(
+       SimpleVar(x),
+       OpExp(
+        PLUS,
+        varExp(
+         SimpleVar(x)),
+        IntExp(1))),
+      ExpList(
+       IfExp(
+        OpExp(
+         EQ,
+         varExp(
+          SimpleVar(x)),
+         IntExp(5)),
+        BreakExp())))))
+,
+   ExpList(
+    varExp(
+     SimpleVar(x))))))
