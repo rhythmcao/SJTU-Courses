@@ -8,7 +8,7 @@ import simpl.typing.TypeError;
 import simpl.typing.TypeResult;
 
 public abstract class Expr {
-
+    //返回类型结果
     public abstract TypeResult typecheck(TypeEnv E) throws TypeError;
 
     /**
@@ -18,5 +18,6 @@ public abstract class Expr {
      * @return
      * @throws RuntimeError
      */
+    //返回表达式的值
     public abstract Value eval(State s) throws RuntimeError;
 }

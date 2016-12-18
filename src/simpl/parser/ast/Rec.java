@@ -36,7 +36,7 @@ public class Rec extends Expr {
     }
 
     public Value eval(State s) throws RuntimeError {
-        RecValue rv=new RecValue(s.E.clone(),x,e);
+        RecValue rv=new RecValue(s.E,x,e);
         Env env=new Env(s.E,x,rv);
         return e.eval(State.of(env, s.M, s.p));
     }
