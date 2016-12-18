@@ -20,9 +20,11 @@ public class TypeVar extends Type {
 
     public Substitution unify(Type t) throws TypeCircularityError {
         if(t instanceof TypeVar){
+            //返回一个Replace的Substitution, 将所有的TypeVar this替换为TypeVar t
             return Substitution.of(this, t);
         }
         if(t.contains(this)){
+            //TypeVar中又包含本身,即类型无解
             throw new TypeCircularityError();
         }else{
             return Substitution.of(this, t);
@@ -40,7 +42,8 @@ public class TypeVar extends Type {
     }
 
     public Type replace(TypeVar a, Type t) {
-        if(a.name.equals(this.name))
+        //先判断是不是需要替换的TypeVar
+        if(this.name.equals(a.name))
             return t;
         else return this;
     }

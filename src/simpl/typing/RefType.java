@@ -25,7 +25,7 @@ public final class RefType extends Type {
     }
 
     public Type replace(TypeVar a, Type t) {
-        return new RefType(t.replace(a, t));
+        return new RefType(this.t.replace(a, t));
     }
 
     public String toString() {
