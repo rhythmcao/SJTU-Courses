@@ -35,7 +35,6 @@ public class App extends BinaryExpr {
             s0 = s0.compose(s2);
         }catch (TypeMismatchError e){
         }
-
         return TypeResult.of(s0,s0.apply(at.t2));
     }
 
