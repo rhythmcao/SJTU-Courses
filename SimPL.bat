@@ -1,6 +1,6 @@
 @echo off
 FOR %%c IN (doc\examples\*.spl) DO (
-	java -jar SimPL.jar %%c
+	java -jar 5140219073.jar %%c
 	echo ----------------------------------
 	)
 pause
