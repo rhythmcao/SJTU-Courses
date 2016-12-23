@@ -40,14 +40,12 @@ public class Interpreter {
     }
 
     public static void main(String[] args) {
-      String file = args[0];
-      if (args.length == 0)
-          throw new RuntimeException("no file");
-      if (!args[0].matches(".+\\.spl"))
-          throw new RuntimeException("Error filename extension");
-      interpret(file);
-      System.out.println("Execute complete!");
-//        //Good cases
+        String file = args[0];
+        if (args.length == 0) throw new RuntimeException("no file");
+        if (!args[0].matches(".+\\.spl")) throw new RuntimeException("Error filename extension");
+        interpret(file);
+        System.out.println("Execute complete!");
+       //Good cases
 //        interpret("doc/examples/plus.spl");
 //        interpret("doc/examples/max.spl");
 //        interpret("doc/examples/pcf.sum.spl");
@@ -59,7 +57,7 @@ public class Interpreter {
 //        interpret("doc/examples/factorial.spl");
 //        interpret("doc/examples/gcd2.spl");
 //        interpret("doc/examples/sum.spl");
-//        interpret("doc/examples/map.spl");
+//         interpret("doc/examples/map.spl");
 //        interpret("doc/examples/pcf.lists.spl");
 //        //Bad cases
 //        interpret("doc/examples/pcf.twice.spl");//可以求值但类型报错
