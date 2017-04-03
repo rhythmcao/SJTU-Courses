@@ -29,7 +29,6 @@ public class ClientSide {
 		} catch (IOException e) {
 			System.out.println("Connection failed!");
 			flag = false;
-			e.printStackTrace();
 		}
 	}
 
