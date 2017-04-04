@@ -1,5 +1,6 @@
 package clientServerModel;
 
+import java.awt.AWTEvent;
 import java.awt.Button;
 import java.awt.Color;
 import java.awt.Container;
@@ -8,6 +9,8 @@ import java.awt.Font;
 import java.awt.GraphicsConfiguration;
 import java.awt.HeadlessException;
 import java.awt.Insets;
+import java.awt.Toolkit;
+import java.awt.event.AWTEventListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -69,7 +72,6 @@ public class ClientGUI extends JFrame implements KeyListener,MouseListener{
 
 	public void initial() {
 		setTitle("File Sharing--Client");
-		setBounds(100, 80, 800, 600);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -146,13 +148,12 @@ public class ClientGUI extends JFrame implements KeyListener,MouseListener{
 		basebox.add(Box.createHorizontalStrut(horizontal));
 		basebox.add(box4);
 		
-		jta=new JTextArea(40,30);
+		jta=new JTextArea(20,40);
 		jta.setEditable(false);
 		jta.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY,2));
 		jta.setFont(new Font("TimeRoman",Font.PLAIN,15));
 		jta.setLineWrap(true);
 		jta.setWrapStyleWord(true);
-		jta.setMargin(new Insets(100,100,10,10));
 		jta.setText(" Please type in the Server IP and try to connect first ......\n");
 		JScrollPane jsp=new JScrollPane(jta);
 		wholebox=Box.createVerticalBox();
@@ -164,6 +165,7 @@ public class ClientGUI extends JFrame implements KeyListener,MouseListener{
 		con.setLayout(new FlowLayout());
 		con.add(wholebox);
 		con.validate();
+		pack();
 	}
 	
 	public void keyTyped(KeyEvent e){
@@ -186,36 +188,9 @@ public class ClientGUI extends JFrame implements KeyListener,MouseListener{
 	public void mouseClicked(MouseEvent m) {
 		Button bt=(Button)m.getSource();
 		if(bt==this.bt1){
-			if(tf1.getText()!=null){
-				CreateConnection();
-			}else{
-				jta.append(" Warning: Please input a server ip first.\n");
-			}
+			CreateConnection();
 		}else if(bt==this.bt2){
-			if(tf2.getText()!=null){
-				transferFileName();
-				try {
-					length=in.readLong();
-					if(length==0){
-						System.out.println("The desired file doesn't exist!");
-						System.out.println("Please re-input your desired file and verify......");
-						jta.append(" The desired file doesn't exist!\n");
-						jta.append(" Please re-input your desired file and verify......\n");
-					}else{
-						flag=2;
-						setBTEnabled();
-						System.out.println("Now you can choose your download path and saved filename .......");
-						jta.append(" Now you can choose your download path and saved filename .......\n");
-					}
-				} catch (IOException e) {
-					System.out.println("Error while receiving file size from server.");
-					jta.append(" Error while receiving file size from server.\n");
-					e.printStackTrace();
-				}
-			}else{
-				System.out.println("Warning: Please input your desired file and path first!");
-				jta.append(" Warning: Please input your desired file and path first!\n");
-			}
+			transferFileName();
 		}else if(bt==this.bt3){
 			boolean success=createLocalFile();
 			if(success==true){
@@ -223,35 +198,30 @@ public class ClientGUI extends JFrame implements KeyListener,MouseListener{
 			}
 		}else if(bt==this.bt4){
 			tearDownConnection();
-			
 		}else if(bt==this.bt5){
-			
+			tf2.setText("");
 		}else if(bt==this.bt6){
-			
+			tf3.setText("");
 		}
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void mouseExited(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void mousePressed(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 	
@@ -290,71 +260,114 @@ public class ClientGUI extends JFrame implements KeyListener,MouseListener{
 	}
 	
 	private void CreateConnection() {
-		try {
-			hostname=this.tf1.getText();
-			clientSocket = new Socket(hostname, port);
-			jta.append(" Connection established!\n");
-			jta.append(" Now you can input your desired file and file path ......\n");
-			System.out.println("Connection established!");
-			out = new DataOutputStream(clientSocket.getOutputStream());
-			in = new DataInputStream(new BufferedInputStream(clientSocket.getInputStream(), Data_Size));
-			flag= 1;
-			setBTEnabled();
-		} catch (IOException e) {
-			e.printStackTrace();
-			System.out.println("Connection failed! Please check your server ip and try to connect again.");
-			jta.append(" Connection failed! Please check your server ip and try to connect again.\n");
-			flag = 0;
-			setBTEnabled();
+		if(!tf1.getText().equals("")){
+			try {
+				hostname=this.tf1.getText();
+				clientSocket = new Socket(hostname, port);
+				jta.append(" Connection established!\n");
+				jta.append(" Now you can input your desired file and file path ......\n");
+				out = new DataOutputStream(clientSocket.getOutputStream());
+				in = new DataInputStream(new BufferedInputStream(clientSocket.getInputStream(), Data_Size));
+				flag= 1;
+				setBTEnabled();
+			} catch (IOException e) {
+				jta.append(" Connection failed! Please check your server ip and try to connect again.\n");
+			}
+		}else{
+			jta.append(" Warning: Please input a server ip first.\n");
 		}
 	}
 	
 	private void transferFileName(){
-		try {
+		if(!tf2.getText().equals("")){
 			remotefile=tf2.getText();
-			out.writeUTF(remotefile);
-		} catch (IOException e) {
-			System.out.println(" Error while transfering filename which is to be downloaded!");
-			jta.append(" Error while transfering filename which is to be downloaded!");
-			e.printStackTrace();
+			try {
+				out.writeUTF(remotefile);
+				try {
+					length = in.readLong();
+					if (length == 0) {
+						jta.append(" The desired file doesn't exist!\n");
+						jta.append(" Please re-input your desired file and verify......\n");
+					} else {
+						flag = 2;
+						setBTEnabled();
+						jta.append(" Now you can choose your download path and filename to be saved .......\n");
+					}
+				} catch (IOException e) {
+					jta.append(" Error while receiving file size from server.\n");
+				}
+			} catch (IOException e) {
+				jta.append(" Error while transfering filename which is to be downloaded!");
+			}
+		}else{
+			jta.append(" Warning: Please input your desired file and path first!\n");
 		}
 	}
 	
-	private boolean createLocalFile(){
-		if(tf3.getText()!=null){
-		localfile=new File(tf3.getText());
-		if(localfile.isDirectory()){
-			if(localfile.exists()){
-				
-			}else{
-				
-			}
-		}else{			
-			jta.append(" The download file path or filename is invalid. Please choose another ......\n");
-			System.out.println("The download file path or filename is invalid. Please choose another ......");
-			return false;
-		}
-		}else{
-			localfile = new File(remotefile);
-			String filename = localfile.getName();
-			localfile = new File(filename);
-			int count = 0;
-			while (localfile.exists()) {
-				localfile = new File(count + "_" + filename); 
-				// If file already exists, rename it by a number.
-				count++;
-			}
+	private boolean createLocalFile() {
+		if (!tf3.getText().equals("")) {
+			localfile = new File(tf3.getText());
 			try {
-				localfile.createNewFile();
-				return true;
+				if (localfile.isDirectory()) {
+					File rtf = new File(remotefile);
+					String filename = rtf.getName();
+					String path=localfile.getAbsolutePath();
+					localfile = new File(path + "\\"+filename);
+					int count = 0;
+					while (localfile.exists()) {
+						localfile = new File(path + "\\(" + count+")"+filename);
+						// If file already exists, rename it by a number.
+						count++;
+					}
+					System.out.println("Line319");
+					System.out.println(localfile.getAbsolutePath());
+					localfile.createNewFile();
+					if(localfile.isFile())
+						return true;
+					else throw new IOException();
+				} else {
+					localfile.createNewFile();
+					if(localfile.isFile())
+						return true;
+					else throw new IOException();
+				}
 			} catch (IOException e) {
-				System.err.println("Error while creating new file in localhost!");
-				jta.append(" Error while creating new file in localhost!\n");
-				e.printStackTrace();
+				jta.append(" The download file path or filename is invalid. Please choose another ......\n");
 				return false;
 			}
+		} else {
+			jta.append(" Please input a file path or filename to be saved first ......\n");
+			return false;
 		}
+	}
 	
+	private void receiveFile(){
+		try {
+				jta.append(" Size of the desired file is " + length+".\n");
+				jta.append(" File receiving started!\n");
+				fos = new FileOutputStream(localfile);
+				int size = 0;
+				int current = 0;
+				byte[] bs = new byte[Data_Size];
+				while ((size = in.read(bs)) != -1) {
+					fos.write(bs, 0, size);
+					bs = new byte[Data_Size];
+					current += size;
+					if (current >= length) {
+						jta.append(" File receiving completed!\n");
+						jta.append(" File has been saved to " + localfile.getAbsolutePath() + ".\n");
+						break;
+					}
+				}
+				if (fos != null)
+					fos.close();
+		} catch (IOException e) {
+			jta.append(" Error while receiving desired file!\n");
+		}finally{
+			flag=1;
+			setBTEnabled();
+			jta.append(" Input another file you want to download from the server.\n");
+		}
 	}
 	private void tearDownConnection() {
 		try {
@@ -364,17 +377,29 @@ public class ClientGUI extends JFrame implements KeyListener,MouseListener{
 				in.close();
 			if (clientSocket != null)
 				clientSocket.close();
+			jta.append(" Connection has been disconnected!\n");
 		} catch (Exception e) {
-			System.err.println("Error while closing socket!");
 			jta.append(" Error while closing socket!\n");
-			e.printStackTrace();
 		}finally{
-			flag=1;
+			flag=0;
 			setBTEnabled();
 		}
 	}
 	
 	public static void main(String[] args) {
-		new ClientGUI();
+		JFrame client=new ClientGUI();
+		//Press Esc to exit the program
+		final Toolkit toolkit = Toolkit.getDefaultToolkit();
+        toolkit.addAWTEventListener(new AWTEventListener(){
+                public void eventDispatched(AWTEvent e){
+                    if (e.getID() == KeyEvent.KEY_PRESSED) {
+                        KeyEvent evt = (KeyEvent) e;
+                        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                            client.dispose();
+                            System.exit(0);
+                        }
+                    }
+                }
+            },AWTEvent.KEY_EVENT_MASK);
 	}
 }

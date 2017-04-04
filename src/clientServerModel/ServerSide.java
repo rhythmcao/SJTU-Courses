@@ -9,9 +9,14 @@ public class ServerSide {
 	public static void main(String[] args) {
 		
 		try {
+			String hostname=null;
+			if(args.length==0)
+				hostname="localhost";
+			else
+				hostname=args[0];
 			@SuppressWarnings("resource")
 			ServerSocket server = new ServerSocket();
-			InetSocketAddress address=new InetSocketAddress("localhost", port);
+			InetSocketAddress address=new InetSocketAddress(hostname, port);
 			server.bind(address);
 			while (true) {
 				System.out.println("Waiting to be connected...");
