@@ -8,7 +8,6 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GraphicsConfiguration;
 import java.awt.HeadlessException;
-import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.AWTEventListener;
 import java.awt.event.InputEvent;
