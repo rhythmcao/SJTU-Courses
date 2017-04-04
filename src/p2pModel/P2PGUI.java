@@ -451,7 +451,7 @@ public class P2PGUI extends JFrame implements KeyListener,MouseListener{
 					msg.append(" Client "+connection.getInetAddress()+" request "+file+".\n");
 					File filePath = new File(file);
 					long length=0;
-					if (filePath.exists()) {
+					if (filePath.exists()&&filePath.isFile()) {
 						length = (long)filePath.length();
 						ps.writeLong(length);
 						ps.flush();

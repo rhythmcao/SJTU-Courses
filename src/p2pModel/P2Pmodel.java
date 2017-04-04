@@ -137,7 +137,7 @@ public class P2Pmodel {
 					System.out.println("S: Client " + connection.getInetAddress() + " request " + file + ".");
 					File filePath = new File(file);
 					long length = 0;
-					if (filePath.exists()) {
+					if (filePath.exists()&&filePath.isFile()) {
 						length = (long) filePath.length();
 						ps.writeLong(length);
 						ps.flush();

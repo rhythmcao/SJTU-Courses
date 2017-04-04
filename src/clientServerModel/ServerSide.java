@@ -7,7 +7,6 @@ public class ServerSide {
 	private final static int port = 2680;
 	private final static int Data_Size = 1024 * 60;
 	public static void main(String[] args) {
-		
 		try {
 			String hostname=null;
 			if(args.length==0)
@@ -45,7 +44,8 @@ public class ServerSide {
 					System.out.println("Client "+connection.getInetAddress()+" request "+file+".");
 					File filePath = new File(file);
 					long length=0;
-					if (filePath.exists()) {
+					if (filePath.exists()&&filePath.isFile()) {
+						
 						length = (long)filePath.length();
 						ps.writeLong(length);
 						ps.flush();
