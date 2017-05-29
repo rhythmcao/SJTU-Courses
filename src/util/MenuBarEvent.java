@@ -15,7 +15,7 @@ public class MenuBarEvent implements ActionListener{
     private DefaultDesktopManager desktopManager = new DefaultDesktopManager();
     public void setDeskTop(javax.swing.JDesktopPane deskTop){
         this.JDeskTop = deskTop;
-       // JDeskTop.setDesktopManager(desktopManager);
+        JDeskTop.setDesktopManager(desktopManager);
     }
     public void setEventName(String eventName){
         this.EventName = eventName;

@@ -23,19 +23,16 @@ public class JdbcAdapter {
                 pstmt = con.prepareStatement(sqlState);
                 pstmt.execute();
                 flag = true;
-
             }catch(java.sql.SQLException sql){
                 flag = false;
                 sql.printStackTrace();
             }
             return flag;
     }
-//真正的执行对数据库的各种操作
+    //真正的执行对数据库的各种操作
     private boolean AdapterObject(String sqlState){
         boolean flag = false;
         System.out.println("执行的语句为:" + sqlState);
-        con = CommonaJdbc.conection;
-
         try{
             con = CommonaJdbc.conection;
             pstmt = con.prepareStatement(sqlState);
@@ -60,7 +57,6 @@ public class JdbcAdapter {
         String sqlStr = null;
         sqlStr = "select count(*) from " + tname + " where "
                  +  id + " = '" + idvalue + "'";
-        System.out.println(sqlStr);
         try{
             con = CommonaJdbc.conection;
             pstmt = con.prepareStatement(sqlStr);
@@ -74,7 +70,6 @@ public class JdbcAdapter {
            sql.printStackTrace();
            return false;
         }
-
         return false;
     }
 
@@ -91,7 +86,6 @@ public class JdbcAdapter {
                         + "')";
            infoStr = "添加年级";
         }
-
         System.out.println(sqlStatement);
         return AdapterObject(sqlStatement);
     }
@@ -99,24 +93,19 @@ public class JdbcAdapter {
     public boolean InsertOrUpdateObject(Obj_classinfo objclassinfo){
         String sqlStatement = null;
         if (validateID("classID","tb_classinfo",objclassinfo.getClassID())){
-            /*sqlStatement = "Update tb_classinfo set classID = '" + objclassinfo.getClassID()
+            sqlStatement = "Update tb_classinfo set classID = '" + objclassinfo.getClassID()
                            + "',gradeID = '" + objclassinfo.getGradeID()
                            + "', className = '" + objclassinfo.getClassName()
-                           + "' where classID = '" + objclassinfo.getClassID().trim() + "'";*/
-            sqlStatement = "Update tb_classinfo set className = '" + objclassinfo.getClassName()
                            + "' where classID = '" + objclassinfo.getClassID().trim() + "'";
-
             infoStr = "更新班级";
-
         }else{
-            sqlStatement = "Insert tb_classinfo(classID,gradeID,className) values ('"
+            sqlStatement = "Insert into tb_classinfo(classID,gradeID,className) values ('"
                        + objclassinfo.getClassID() + "','" + objclassinfo.getGradeID()
                        + "','" + objclassinfo.getClassName() + "')";
            infoStr = "添加班级";
         }
         System.out.println(sqlStatement);
         return AdapterObject(sqlStatement);
-
     }
     public boolean InsertOrUpdateObject(Obj_subject objsubject){
         String sqlStatement = null;
@@ -173,8 +162,6 @@ public class JdbcAdapter {
         return AdapterObject(sqlStatement);
 
     }
-
-    ///////////////////////////////////////////////
     //产生更新存盘学生信息语句
     public boolean InsertOrUpdateObject(Obj_student objstudent){
         String sqlStatement = null;
@@ -297,7 +284,7 @@ public class JdbcAdapter {
         }
         return true;
     }
-    //产生更新学生信息信息语句
+    //产生更新学生信息语句
     public boolean Delete_Obj_gradeinfo_sub(Obj_gradeinfo_sub[] object){
         try{
             con = CommonaJdbc.conection;

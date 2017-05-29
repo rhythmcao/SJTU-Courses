@@ -7,7 +7,6 @@ import javax.swing.JFrame;
 import java.awt.event.KeyEvent;
 import javax.swing.JComboBox;
 public class SendFocuseAdapter extends KeyAdapter {
-    private JFrame adaptee;
     private JTextField jTextField = null;
     private JComboBox jComboBox = null;
     public SendFocuseAdapter(JTextField ss) {
@@ -19,7 +18,6 @@ public class SendFocuseAdapter extends KeyAdapter {
 
     public void keyPressed(KeyEvent e) {
 
-   // System.out.println("我在匿名类中执行那");
     if (e.getKeyCode() == KeyEvent.VK_ENTER){
         if(jTextField instanceof JTextField){
             this.jTextField.requestFocus();

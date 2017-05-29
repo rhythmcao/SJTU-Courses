@@ -13,7 +13,6 @@ public class RetrieveObject {
     private ResultSetMetaData rsmd = null;
 
     public RetrieveObject(){
-
     }
     public Collection getTableCollection(String sqlStr){
         System.out.println("执行的集合查询为 :" + sqlStr);

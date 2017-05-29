@@ -16,6 +16,7 @@ import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.Border;
 import java.awt.event.ActionEvent;
@@ -58,8 +59,9 @@ public class JF_login extends JFrame {
         jBexit.addActionListener(new JF_login_jBexit_actionAdapter(this));
         jBlogin.addActionListener(new JF_login_jBlogin_actionAdapter(this));
         this.getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
-        jTextField1.setText("");
-        jLabel2.setText("用户口令：");
+        jTextField1.setText("admin");
+        jLabel2.setText("用户登录密码：");
+        jLabel2.setHorizontalAlignment(JLabel.CENTER);
         jPasswordField1.setText("");
         jPanel2.setLayout(flowLayout1);
         jBlogin.setText("登录");
@@ -73,6 +75,7 @@ public class JF_login extends JFrame {
         jPanel2.add(jBlogin);
         jPanel2.add(jBexit);
         jLabel1.setText("用户ID：");
+        jLabel1.setHorizontalAlignment(JLabel.CENTER);
         gridLayout1.setColumns(2);
         gridLayout1.setRows(2);
         jPanel1.setLayout(gridLayout1);
@@ -119,10 +122,9 @@ public class JF_login extends JFrame {
         if (e.getKeyCode() == KeyEvent.VK_ENTER){
            ActionEvent login = new ActionEvent(jBlogin,0,null);
            jBlogin_actionPerformed(login);
-
         }
     }
-
+    // exit the login
     public void jBexit_actionPerformed(ActionEvent e) {
         int result = javax.swing.JOptionPane.showOptionDialog(null,"是否退出系统登录?","系统提示",
                                   javax.swing.JOptionPane.YES_NO_OPTION,javax.swing.JOptionPane.QUESTION_MESSAGE,
@@ -142,7 +144,6 @@ public class JF_login extends JFrame {
            java.util.Vector vdata = null;
            util.RetrieveObject retrieve = new util.RetrieveObject();
            vdata = retrieve.getObjectRow(sqlSelect);
-           System.out.println(vdata.size() + " : " + vdata.get(0));
 
            if (Integer.parseInt(String.valueOf(vdata.get(0))) > 0){
                AppMain frame = new AppMain();

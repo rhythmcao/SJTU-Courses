@@ -77,7 +77,7 @@ public class JF_view_error extends JFrame {
     }
 
     public static void main(String args[]){
-        JF_view_error error = new JF_view_error("¹þ¹þ£¬¹þÄãÀ´ÁË");
+        JF_view_error error = new JF_view_error("²âÊÔ±¨´í´°¿ÚJF_view_error");
     }
     public void jButton1_actionPerformed(ActionEvent e) {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -100,7 +100,6 @@ class JF_view_error_jButton2_actionAdapter implements ActionListener {
         adaptee.jButton2_actionPerformed(e);
     }
 }
-
 
 class JF_view_error_jButton1_actionAdapter implements ActionListener {
     private JF_view_error adaptee;

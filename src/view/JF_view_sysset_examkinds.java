@@ -39,9 +39,10 @@ public class JF_view_sysset_examkinds extends JInternalFrame {
         gridLayout1.setColumns(2);
         gridLayout1.setRows(2);
         jLabel1.setText("¿¼ÊÔÀà±ð±àºÅ");
-        jTextField1.setEnabled(false);
+        jLabel1.setHorizontalAlignment(JLabel.CENTER);
         jTextField1.setText("");
         jLabel2.setText("¿¼ÊÔÀà±ðÃû³Æ");
+        jLabel2.setHorizontalAlignment(JLabel.CENTER);
         jTextField2.setText("");
         jBdel.setText("É¾³ý");
         jBdel.addActionListener(new JF_view_sysset_examkinds_jBdel_actionAdapter(this));
@@ -157,7 +158,7 @@ public class JF_view_sysset_examkinds extends JInternalFrame {
                                     JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,
                                     null,new String[]  {"ÊÇ","·ñ"},"·ñ");
          if (result == JOptionPane.NO_OPTION)  return;
-         String sqlDel = "delete tb_examkinds where kindID = '" + jTextField1.getText().trim() + "'";
+         String sqlDel = "delete from tb_examkinds where kindID = '" + jTextField1.getText().trim() + "'";
          JdbcAdapter jdbcAdapter = new JdbcAdapter();
          if (jdbcAdapter.DeleteObject(sqlDel)) {
              jTextField1.setText("");

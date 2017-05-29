@@ -41,10 +41,12 @@ public class JF_view_user_modify extends JInternalFrame {
         gridLayout1.setColumns(2);
         gridLayout1.setRows(3);
         jLabel1.setText("用户ID");
+        jLabel1.setHorizontalAlignment(JLabel.CENTER);
         jTextField1.setText("");
         jTextField1.addKeyListener(new
                                    JF_view_user_modify_jTextField1_keyAdapter(this));
         jLabel2.setText("用户姓名");
+        jLabel2.setHorizontalAlignment(JLabel.CENTER);
         jTextField2.setText("");
         jBdel.setText("删除");
         jBdel.addActionListener(new JF_view_user_modify_jBdel_actionAdapter(this));
@@ -58,6 +60,7 @@ public class JF_view_user_modify extends JInternalFrame {
         jBexit.addActionListener(new JF_view_user_modify_jBexit_actionAdapter(this));
         jTable1.addMouseListener(new JF_view_user_modify_jTable1_mouseAdapter(this));
         jLabel3.setText("用户口令");
+        jLabel3.setHorizontalAlignment(JLabel.CENTER);
         jTextField3.setText("");
         this.getContentPane().add(jSplitPane1, java.awt.BorderLayout.CENTER);
         jSplitPane1.setOrientation(JSplitPane.VERTICAL_SPLIT);
@@ -78,7 +81,7 @@ public class JF_view_user_modify extends JInternalFrame {
         jPanel2.add(jBexit);
         jSplitPane1.setDividerLocation(164);
 
-       // jTextField1.addKeyListener(new SendFocuseAdapter(jTextField2));
+        jTextField1.addKeyListener(new SendFocuseAdapter(jTextField2));
         jTextField2.addKeyListener(new SendFocuseAdapter(jTextField3));
 
         buildTable();

@@ -69,23 +69,15 @@ public class AppMain extends JFrame {
 			frameSize.width = screenSize.width;
 		}
 		setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
-
-		//
-
 		setVisible(true);
 
 	}
 
 	protected void loadBackgroundImage() {
 		ImageIcon icon = new ImageIcon(".\\images\\main.jpg");
-		// ImageIcon icon = new
-		// ImageIcon(JF_main.class.getResource("main_bg.jpg"));
 		JLabel jl = new JLabel(icon);
 		jl.setBounds(0, 0, icon.getIconWidth(), icon.getIconHeight());
-
 		desktop.add(jl, new Integer(Integer.MIN_VALUE));
-
-		// desktop.add(jl,BorderLayout.CENTER);
 	}
 
 	private void BuildMenuBar() {
@@ -102,7 +94,7 @@ public class AppMain extends JFrame {
 		JMenuItem[] _jMenuItem2 = { new JMenuItem("【基本信息】"), new JMenuItem("【成绩信息】"), new JMenuItem("【汇总查询】") };
 		String[] _jMenuItem2Name = { "JF_view_query_jbqk", "JF_view_query_grade_mx", "JF_view_query_grade_hz" };
 
-		JMenuItem[] _jMenuItem3 = { new JMenuItem("【用户维护】"), new JMenuItem("【系统退出】") };
+		JMenuItem[] _jMenuItem3 = { new JMenuItem("【用户信息】"), new JMenuItem("【系统退出】") };
 		String[] _jMenuItem3Name = { "sys_user_modify", "JB_EXIT" };
 
 		/* 设置菜单、菜单项字体风格 */
@@ -111,6 +103,7 @@ public class AppMain extends JFrame {
 			_jMenu[i].setFont(_MenuItemFont);
 			jMenuBarMain.add(_jMenu[i]);
 		}
+		// 依次设置并添加每一个菜单项
 		for (int j = 0; j < _jMenuItem0.length; j++) {
 			_jMenuItem0[j].setFont(_MenuItemFont);
 			final String EventName1 = _jMenuItem0Name[j];
@@ -149,7 +142,6 @@ public class AppMain extends JFrame {
 			_jMenuItem2[j].addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					_MenuBarEvent.setEventName(EventName2);
-					// _MenuBarEvent.getName();
 				}
 			});
 			_jMenu[2].add(_jMenuItem2[j]);
@@ -164,7 +156,6 @@ public class AppMain extends JFrame {
 			_jMenuItem3[j].addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					_MenuBarEvent.setEventName(EventName3);
-					// _MenuBarEvent.getName();
 				}
 			});
 			_jMenu[3].add(_jMenuItem3[j]);
@@ -185,8 +176,6 @@ public class AppMain extends JFrame {
 				"JF_view_query_jbqk", "JF_view_query_grade_mx", "JF_view_query_grade_hz", "JB_EXIT" };
 		for (int i = 0; i < ComandString.length; i++) {
 			JButton jb = new JButton();
-			// ImageIcon image = new
-			// ImageIcon(JF_main.class.getResource(ImageName[i]));
 			ImageIcon image = new ImageIcon(".\\images\\" + ImageName[i]);
 			jb.setIcon(image);
 			jb.setToolTipText(TipString[i]);
