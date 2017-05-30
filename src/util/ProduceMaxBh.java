@@ -23,7 +23,7 @@ public class ProduceMaxBh {
         }else{
             maxbh = String.valueOf(vdata.get(0));
             String subStr = String.valueOf(Integer.parseInt(maxbh) + 1);
-            if ((subStr.length() == 1) ||(subStr.length() == 3)||(subStr.length() == 5)) {
+            if (subStr.length() %2 == 1) {
                 subStr = "0" + subStr;
                 newbh = subStr;
             }else{

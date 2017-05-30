@@ -31,29 +31,29 @@ import java.awt.event.MouseAdapter;
 import model.Obj_gradeinfo_sub  ;
 public class JF_view_gradesub extends JInternalFrame {
     BorderLayout borderLayout1 = new BorderLayout();
+    FlowLayout flowLayout1 = new FlowLayout();
     JSplitPane jSplitPane1 = new JSplitPane();
+    JScrollPane jScrollPane1 = new JScrollPane();
     JScrollPane jScrollPane2 = new JScrollPane();
     JPanel jPanel2 = new JPanel();
-    FlowLayout flowLayout1 = new FlowLayout();
     JTable jTable1 = new JTable();
+    JTable jTable2 = new JTable();
     JLabel jLabel1 = new JLabel();
-    JComboBox jComboBox1 = new JComboBox();
     JLabel jLabel2 = new JLabel();
+    JLabel jLabel3 = new JLabel();
+    JComboBox jComboBox1 = new JComboBox();
     JComboBox jComboBox2 = new JComboBox();
     JButton jBadd = new JButton();
     JButton jBsave = new JButton();
     JButton jBexit = new JButton();
-    JScrollPane jScrollPane1 = new JScrollPane();
-    JTable jTable2 = new JTable();
-    //////////////////
+    JButton jBdel = new JButton();
+    JTextField jTextField1 = new JTextField();
+    
     String classid[] = null;
     String examkindid[] = null;
     String examkindname[] = null;
     String subjectcode[] = null;
     String subjectname[] = null;
-    JLabel jLabel3 = new JLabel();
-    JTextField jTextField1 = new JTextField();
-    JButton jBdel = new JButton();
     public JF_view_gradesub() {
         try {
             jbInit();
@@ -68,8 +68,12 @@ public class JF_view_gradesub extends JInternalFrame {
         jSplitPane1.setOrientation(JSplitPane.VERTICAL_SPLIT);
         jSplitPane1.setDividerSize(10);
         jPanel2.setLayout(flowLayout1);
-        jLabel1.setText("选择班级:");
+        jLabel1.setText("考试日期:");
+        jTextField1.setPreferredSize(new Dimension(66, 26));
+        jTextField1.setText("");
         jLabel2.setText("考试种类:");
+        jLabel3.setText("选择班级:");
+        
         jBadd.setText("添加");
         jBadd.addActionListener(new JF_view_gradesub_jBadd_actionAdapter(this));
         jBsave.setText("存盘");
@@ -78,9 +82,7 @@ public class JF_view_gradesub extends JInternalFrame {
         jBexit.addActionListener(new JF_view_gradesub_jBexit_actionAdapter(this));
         this.setClosable(true);
         jComboBox2.addItemListener(new JF_view_gradesub_jComboBox2_itemAdapter(this));
-        jLabel3.setText("考试日期:");
-        jTextField1.setPreferredSize(new Dimension(96, 26));
-        jTextField1.setText("");
+        
         flowLayout1.setAlignment(FlowLayout.RIGHT);
         jTable1.addMouseListener(new JF_view_gradesub_jTable1_mouseAdapter(this));
         jBdel.setText("删除");

@@ -1,6 +1,5 @@
 package view;
 
-import javax.swing.JFrame;
 import java.awt.BorderLayout;
 import javax.swing.JInternalFrame;
 import javax.swing.JSplitPane;
@@ -33,16 +32,18 @@ public class JF_view_sysset_grade extends JInternalFrame {
 	private void jbInit() throws Exception {
 		buildTable();
 		this.getContentPane().setLayout(borderLayout1);
-		setSize(380, 300);
 		this.setClosable(true);
+		setSize(380, 300);
 		setVisible(true);
 		gridLayout1.setColumns(2);
 		gridLayout1.setRows(2);
 		jLabel1.setText("年级编号");
+		jLabel1.setHorizontalAlignment(JLabel.CENTER);
 		jTextField1.setText("");
 		jLabel2.setText("年级名称");
+		jLabel2.setHorizontalAlignment(JLabel.CENTER);
 		jTextField2.setText("");
-		
+
 		jBdel.setText("删除");
 		jBdel.addActionListener(new JF_view_sysset_grade_jBdel_actionAdapter(this));
 		jBadd.setText("添加");
@@ -51,16 +52,16 @@ public class JF_view_sysset_grade extends JInternalFrame {
 		jBsave.addActionListener(new JF_view_sysset_grade_jButton3_actionAdapter(this));
 		jBexit.setText("退出");
 		jBexit.addActionListener(new JF_view_sysset_grade_jBexit_actionAdapter(this));
-		
+
 		jPanel2.setLayout(flowLayout1);
 		flowLayout1.setAlignment(FlowLayout.RIGHT);
 		jTable1.addMouseListener(new JF_view_sysset_grade_jTable1_mouseAdapter(this));
 		this.getContentPane().add(jSplitPane1, java.awt.BorderLayout.CENTER);
 		jSplitPane1.setOrientation(JSplitPane.VERTICAL_SPLIT);
-		jPanel1.setLayout(gridLayout1);
 		jSplitPane1.add(jScrollPane1, JSplitPane.TOP);
 		jScrollPane1.getViewport().add(jTable1);
 		jSplitPane1.add(jPanel1, JSplitPane.BOTTOM);
+		jPanel1.setLayout(gridLayout1);
 		jPanel1.add(jLabel1);
 		jPanel1.add(jTextField1);
 		jPanel1.add(jLabel2);
@@ -76,19 +77,19 @@ public class JF_view_sysset_grade extends JInternalFrame {
 		buildTable();
 	}
 
+	FlowLayout flowLayout1 = new FlowLayout();
 	BorderLayout borderLayout1 = new BorderLayout();
+	GridLayout gridLayout1 = new GridLayout();
 	JSplitPane jSplitPane1 = new JSplitPane();
 	JScrollPane jScrollPane1 = new JScrollPane();
 	JPanel jPanel1 = new JPanel();
+	JPanel jPanel2 = new JPanel();
 	JTable jTable1 = new JTable();
-	GridLayout gridLayout1 = new GridLayout();
 	JLabel jLabel1 = new JLabel();
 	JTextField jTextField1 = new JTextField();
 	JLabel jLabel2 = new JLabel();
 	JTextField jTextField2 = new JTextField();
-	JPanel jPanel2 = new JPanel();
 	JButton jBdel = new JButton();
-	FlowLayout flowLayout1 = new FlowLayout();
 	JButton jBadd = new JButton();
 	JButton jBsave = new JButton();
 	JButton jBexit = new JButton();

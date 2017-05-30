@@ -1,6 +1,5 @@
 package view;
 
-import javax.swing.JFrame;
 import java.awt.BorderLayout;
 import javax.swing.JInternalFrame;
 import javax.swing.JSplitPane;

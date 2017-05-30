@@ -173,18 +173,20 @@ public class JdbcAdapter {
                            + "',age = '" + objstudent.getAge()
                            + "',addr = '" + objstudent.getAddress()
                            + "',phone = '" + objstudent.getPhone()
+                           + "',email ='"+objstudent.getEmail()
                            + "' where stuid = '" + objstudent.getStuid().trim() + "'";
 
             infoStr = "更新学生信息";
 
         }else{
-            sqlStatement = "Insert tb_studentinfo(stuid,classid,stuname,sex,age,addr,phone) values ('" + objstudent.getStuid()
+            sqlStatement = "Insert into tb_studentinfo(stuid,classid,stuname,sex,age,addr,phone,email) values ('" + objstudent.getStuid()
                            + "','" +  objstudent.getClassID()
                            + "','" + objstudent.getStuname()
                            + "','" + objstudent.getSex()
                            + "','" + objstudent.getAge()
                            + "','" + objstudent.getAddress()
                            + "','" + objstudent.getPhone()
+                           + "','" + objstudent.getEmail()
                            + "')";
 
             infoStr = "添加学生信息";

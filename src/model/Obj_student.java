@@ -1,6 +1,5 @@
 package model;
 
-
 public class Obj_student {
     private String stuid;
     private String classID;
@@ -9,6 +8,7 @@ public class Obj_student {
     private int age;
     private String address;
     private String phone;
+    private String email;
 
     public String getStuid() {
         return stuid;
@@ -24,10 +24,6 @@ public class Obj_student {
 
     public String getSex() {
         return sex;
-    }
-
-    public int getAge() {
-        return age;
     }
 
     public String getAddress() {
@@ -54,10 +50,6 @@ public class Obj_student {
         this.sex = sex;
     }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
-
     public void setAddress(String address) {
         this.address = address;
     }
@@ -65,4 +57,20 @@ public class Obj_student {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
 }

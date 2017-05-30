@@ -1,13 +1,10 @@
 
-import java.awt.Toolkit;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
-import java.awt.Dimension;
 import util.CommonaJdbc;
 import view.JF_login;
 
 public class AppStu {
-	boolean packFrame = false;
 	/**
 	 * Construct and show the application.
 	 */
@@ -25,16 +22,15 @@ public class AppStu {
 	 *            String[]
 	 */
 	public static void main(String[] args) {
-	    SwingUtilities.invokeLater(new Runnable() {
-        public void run() {
-            try {
-                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-                new AppStu();
-            } catch (Exception exception) {
-                exception.printStackTrace();
-            }
-
-        }
-    });
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+					new AppStu();
+				} catch (Exception exception) {
+					exception.printStackTrace();
+				}
+			}
+		});
 	}
 }

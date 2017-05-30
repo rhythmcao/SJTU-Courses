@@ -5,9 +5,6 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JSplitPane;
-import javax.swing.JTree;
-import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JMenu;
@@ -16,8 +13,6 @@ import javax.swing.JMenuBar;
 import util.MenuBarEvent;
 import java.awt.Font;
 import javax.swing.JDesktopPane;
-import javax.swing.tree.DefaultTreeCellRenderer;
-import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.JToolBar;
@@ -50,11 +45,12 @@ public class AppMain extends JFrame {
 	 * @throws java.lang.Exception
 	 */
 	private void jbInit() throws Exception {
+		this.setResizable(false);
 		jToolBarMain.setFloatable(false);
 		this.setJMenuBar(jMenuBarMain);
 		contentPane = (JPanel) getContentPane();
 		contentPane.setLayout(borderLayout1);
-		setSize(new Dimension(800, 640));
+		setSize(new Dimension(780, 620));
 		setTitle("学生成绩管理系统");
 		contentPane.add(desktop, java.awt.BorderLayout.CENTER);
 		contentPane.add(jToolBarMain, java.awt.BorderLayout.NORTH);
@@ -83,7 +79,7 @@ public class AppMain extends JFrame {
 	private void BuildMenuBar() {
 
 		JMenu[] _jMenu = { new JMenu("【参数设置】"), new JMenu("【基本信息】"), new JMenu("【系统查询】"), new JMenu("【系统管理】") };
-		/* 设置菜单相目JMenuItem元素 */
+		/* 设置菜单项目JMenuItem元素 */
 		JMenuItem[] _jMenuItem0 = { new JMenuItem("【年级设置】"), new JMenuItem("【班级设置】"), new JMenuItem("【考试科目】"),
 				new JMenuItem("【考试类别】") };
 		String[] _jMenuItem0Name = { "sys_grade", "sys_class", "sys_subject", "sys_examkinds" };
@@ -166,7 +162,6 @@ public class AppMain extends JFrame {
 	}
 
 	private void BuildToolBar() {
-		JToolBar toolbar = new JToolBar();
 		String ImageName[] = { "科目设置.GIF", "班级设置.GIF", "添加学生.GIF", "录入成绩.GIF", "基本查询.GIF", "成绩明细.GIF", "年级汇总.GIF",
 				"系统退出.GIF" };
 

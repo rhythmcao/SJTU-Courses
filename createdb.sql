@@ -9,7 +9,10 @@ create table tb_user(
 
 create table tb_classinfo(
 	classID varchar(10) primary key,
-	gradeID varchar(10),
+	gradeID varchar(10) 
+	references tb_gradeinfo(gradeID)
+	on delete set null
+	on update cascade,	
 	className varchar(20)
 );
 
@@ -19,7 +22,7 @@ create table tb_examkinds(
 );
 
 create table tb_gradeinfo(
-	gradeID varchar(10) primary key references tb_classinfo(gradeID),
+	gradeID varchar(10) primary key,
 	gradeName varchar(20)
 );
 
@@ -33,10 +36,11 @@ create table tb_studentinfo(
 	references tb_studentinfo(stuname)
 	on delete set null
 	on update cascade,
-	sex varchar(10),
-	age int(4),
+	sex varchar(10) check(sex='男' or sex='女'),
+	age int(4) check(age>0 and age<100),
 	addr varchar(50),
-	phone varchar(20)
+	phone varchar(20) check(REGEXP_like(phone,'[0-9]+')),
+	email varchar(20) check(email like '%_@%_._%')
 );
 
 create table tb_subject(
@@ -51,7 +55,7 @@ create table tb_teacher(
 	on delete set null
 	on update cascade,
 	teaname varchar(20),
-	sex varchar(10),
+	sex varchar(10) check(sex='男' or sex='女'),
 	knowledge varchar(20),
 	knowlevel varchar(20)
 );
@@ -90,7 +94,7 @@ insert into tb_gradeinfo(gradeID,gradeName) values ("08","博二");
 insert into tb_gradeinfo(gradeID,gradeName) values ("09","博三");
 insert into tb_gradeinfo(gradeID,gradeName) values ("10","博四");
 insert into tb_gradeinfo(gradeID,gradeName) values ("11","博五");
-insert into tb_classinfo(classID,gradeID,className) values ("010001","01","大一计算机系一班")；
-insert into tb_classinfo(classID,gradeID,className) values ("020001","02","大二计算机系一班")；
+insert into tb_classinfo(classID,gradeID,className) values ("010001","01","大一计算机系一班");
+insert into tb_classinfo(classID,gradeID,className) values ("020001","02","大二计算机系一班");
 
 
