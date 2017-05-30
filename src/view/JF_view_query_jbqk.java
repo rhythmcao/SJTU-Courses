@@ -40,7 +40,6 @@ public class JF_view_query_jbqk extends JInternalFrame {
     JButton jBexit = new JButton();
     JTextField jTextField1 = new JTextField();
 
-    ////////////////
     String tabname = null;
     String zdname = null;
     String ysfname = null;
@@ -136,8 +135,8 @@ FROM tb_studentinfo s ,tb_classinfo c where s.classID = c.classID */
 
     public void jComboBox1_itemStateChanged(ItemEvent itemEvent) {
         if (jComboBox1.getSelectedIndex() == 0){
-            this.tabname = "SELECT s.stuid, c.className, s.stuname, s.sex, s.age, s.addr, s.phone FROM tb_studentinfo s ,tb_classinfo c where s.classID = c.classID";
-            String[] name = {"学生编号","班级名称","学生姓名","性别","年龄","家庭住址","联系电话"};
+            this.tabname = "SELECT s.stuid, c.className, s.stuname, s.sex, s.age, s.addr, s.phone, s.email FROM tb_studentinfo s ,tb_classinfo c where s.classID = c.classID";
+            String[] name = {"学生编号","班级名称","学生姓名","性别","年龄","家庭住址","联系电话","电子邮件"};
             jTname = name;
             jComboBox2.removeAllItems();
             jComboBox2.addItem("学生编号");

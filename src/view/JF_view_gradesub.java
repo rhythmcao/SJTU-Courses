@@ -2,7 +2,6 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.event.MouseEvent;
-import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -11,7 +10,6 @@ import java.awt.FlowLayout;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
-import java.awt.Rectangle;
 import java.awt.Dimension;
 import javax.swing.JInternalFrame;
 import util.RetrieveObject;
@@ -24,9 +22,7 @@ import javax.swing.JTextField;
 import java.util.Locale;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
-import util.CommonaJdbc;
 import javax.swing.DefaultDesktopManager;
-import java.awt.event.MouseEvent;
 import java.awt.event.MouseAdapter;
 import model.Obj_gradeinfo_sub  ;
 public class JF_view_gradesub extends JInternalFrame {
@@ -80,22 +76,22 @@ public class JF_view_gradesub extends JInternalFrame {
         jBsave.addActionListener(new JF_view_gradesub_jBsave_actionAdapter(this));
         jBexit.setText("退出");
         jBexit.addActionListener(new JF_view_gradesub_jBexit_actionAdapter(this));
+        jBdel.setText("删除");
+        jBdel.addActionListener(new JF_view_gradesub_jBdel_actionAdapter(this));
         this.setClosable(true);
         jComboBox2.addItemListener(new JF_view_gradesub_jComboBox2_itemAdapter(this));
         
         flowLayout1.setAlignment(FlowLayout.RIGHT);
         jTable1.addMouseListener(new JF_view_gradesub_jTable1_mouseAdapter(this));
-        jBdel.setText("删除");
-        jBdel.addActionListener(new JF_view_gradesub_jBdel_actionAdapter(this));
-
+       
         jSplitPane1.add(jScrollPane2, JSplitPane.TOP);
         jSplitPane1.add(jScrollPane1, JSplitPane.BOTTOM);
         jScrollPane1.getViewport().add(jTable2);
-        jPanel2.add(jLabel3);
+        jPanel2.add(jLabel1);
         jPanel2.add(jTextField1);
         jPanel2.add(jLabel2);
         jPanel2.add(jComboBox1);
-        jPanel2.add(jLabel1);
+        jPanel2.add(jLabel3);
         jPanel2.add(jComboBox2);
         jPanel2.add(jBadd);
         jPanel2.add(jBdel);
@@ -182,7 +178,7 @@ public class JF_view_gradesub extends JInternalFrame {
     public void jComboBox2_itemStateChanged(ItemEvent e) {
         String cid = classid[jComboBox2.getSelectedIndex()];
         DefaultTableModel tablemodel = null;
-        String[] name = {"学生编号", "班级编号", "学生姓名", "性别", "年龄", "家庭住址", "联系电话"};
+        String[] name = {"学生编号", "班级编号", "学生姓名", "性别", "年龄", "家庭住址", "联系电话","电子邮件"};
         String sqlStr = "select * from tb_studentinfo where classID = '" + cid + "'";
         util.RetrieveObject bdt = new  util.RetrieveObject();
         tablemodel = bdt.getTableModel(name, sqlStr);
@@ -324,7 +320,6 @@ public class JF_view_gradesub extends JInternalFrame {
 
                 String sujcode = String.valueOf(vdata.get(3));
                     for(int aa = 0 ; aa < this.subjectcode.length ; aa++){
-//                        System.out.println(sujcode +  ";" +  subjectcode[aa]);
                         if (sujcode.equals(subjectcode[aa])){
                             findindex = aa;
                             System.out.println("findindex = " + findindex);
@@ -332,7 +327,6 @@ public class JF_view_gradesub extends JInternalFrame {
                     }
 
                 if (i == 0){
-
                     vrow.addElement(vdata.get(0));
                     vrow.addElement(vdata.get(1));
                     vrow.addElement(examkindname[Integer.parseInt(String.
@@ -346,7 +340,6 @@ public class JF_view_gradesub extends JInternalFrame {
                     ksrq = ksrq.substring(0, 10);
                     System.out.println(ksrq);
                     vrow.addElement(ksrq);
-
                 }else{
                     vrow.addElement("");
                     vrow.addElement("");

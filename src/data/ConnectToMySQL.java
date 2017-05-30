@@ -11,48 +11,29 @@ public class ConnectToMySQL {
     // 连接测试主程序
     public static void main(String[] args) {
         Connection conn = null;
-        Statement stmt = null;
+        Statement stmt=null;
         try{
             // 注册 JDBC 驱动
             Class.forName("com.mysql.jdbc.Driver");
             System.out.println("连接数据库...");
-            conn = DriverManager.getConnection(DB_URL,USER,PASS);   
-            // 执行查询
-            stmt = conn.createStatement();
-            String sql;
-            sql = "SELECT actor_id,first_name,last_name,last_update FROM actor";
-            ResultSet rs = stmt.executeQuery(sql);
-        
-            // 展开结果集数据库
-            while(rs.next()){
-                // 通过字段检索
-                int id  = rs.getInt("actor_id");
-                String fname = rs.getString("first_name");
-                String lname = rs.getString("last_name");
-                Timestamp date = rs.getTimestamp("last_update");
-    
-                // 输出数据
-                System.out.print("Actor id: " + id+"\t");
-                System.out.print("First_name: " + fname+"\t");
-                System.out.print("Last_name: " + lname+"\t");
-                System.out.print("Last_update: "+date+"\n");
-            }
+            conn = DriverManager.getConnection(DB_URL,USER,PASS); 
+            stmt=conn.createStatement();
+            // 创建班级，一个年级十个班
+//            new GenerateClasses(conn,stmt).AutoGenerateClasses();
+            // 为每一个班分配一个教师
+//            new GenerateTeachers(conn, stmt).AutoGenerateTeachers();
+            // 为每一个班级创建一些学生
+            new GenerateStudents(conn,stmt).AutoGenerateStudents();
+            // 为每一个学生每一门课创建成绩
+//            new GenerateScores(conn,stmt).AutoGenerateScores();
             // 完成后关闭
-            rs.close();
             stmt.close();
             conn.close();
         }catch(SQLException se){
-            // 处理 JDBC 错误
             se.printStackTrace();
         }catch(Exception e){
-            // 处理 Class.forName 错误
             e.printStackTrace();
         }finally{
-            // 关闭资源
-            try{
-                if(stmt!=null) stmt.close();
-            }catch(SQLException se2){
-            }// 什么都不做
             try{
                 if(conn!=null) conn.close();
             }catch(SQLException se){

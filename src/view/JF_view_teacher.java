@@ -163,7 +163,7 @@ public class JF_view_teacher extends JInternalFrame {
 			classid = null;
 
 		jComboBox2.removeAllItems();
-		sqlStr = "select knowledge from tb_teacher";
+		sqlStr = "select distinct knowledge from tb_teacher";
 		retrieve = new RetrieveObject();
 		collection = retrieve.getTableCollection(sqlStr);
 		iterator = collection.iterator();
@@ -184,7 +184,7 @@ public class JF_view_teacher extends JInternalFrame {
 		jComboBox3.addItem("Ů");
 
 		jComboBox4.removeAllItems();
-		sqlStr = "select knowlevel from tb_teacher";
+		sqlStr = "select distinct knowlevel from tb_teacher";
 		retrieve = new RetrieveObject();
 		collection = null;
 		iterator = null;
@@ -304,10 +304,10 @@ public class JF_view_teacher extends JInternalFrame {
 
 		jTextField1.setText(vdata.get(0).toString());
 		jTextField2.setText(vdata.get(2).toString());
-		jComboBox1.setSelectedItem(vdata.get(1).toString());
-		jComboBox2.setSelectedItem(vdata.get(4).toString());
-		jComboBox3.setSelectedItem(vdata.get(3).toString());
-		jComboBox4.setSelectedItem(vdata.get(5).toString());
+		jComboBox1.setSelectedItem(vdata.get(1).toString().trim());
+		jComboBox2.setSelectedItem(vdata.get(4).toString().trim());
+		jComboBox3.setSelectedItem(vdata.get(3).toString().trim());
+		jComboBox4.setSelectedItem(vdata.get(5).toString().trim());
 	}
 
 }

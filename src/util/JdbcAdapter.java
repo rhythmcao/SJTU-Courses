@@ -81,7 +81,7 @@ public class JdbcAdapter {
                        + "' where gradeID = '" + objgradeinfo.getGradeID().trim() + "'";
             infoStr = "更新年级";
         }else{
-            sqlStatement = "Insert tb_gradeinfo(gradeID,gradeName) values ('"
+            sqlStatement = "Insert into tb_gradeinfo(gradeID,gradeName) values ('"
                         + objgradeinfo.getGradeID() + "','" + objgradeinfo.getGradeName()
                         + "')";
            infoStr = "添加年级";
@@ -116,7 +116,7 @@ public class JdbcAdapter {
             infoStr = "更新考试科目";
 
         }else{
-            sqlStatement = "Insert tb_subject(code,subject) values ('"
+            sqlStatement = "Insert into tb_subject(code,subject) values ('"
                        + objsubject.getCode() + "','" + objsubject.getSubject()
                        + "')";
             infoStr = "添加考试科目";
@@ -135,7 +135,7 @@ public class JdbcAdapter {
             infoStr = "更新考试类别";
 
         }else{
-            sqlStatement = "Insert tb_examkinds(KindID,KindName) values ('"
+            sqlStatement = "Insert into tb_examkinds(KindID,KindName) values ('"
                            + objexamkinds.getKindID() + "','" +
                            objexamkinds.getKindName()
                            + "')";
@@ -153,7 +153,7 @@ public class JdbcAdapter {
             infoStr = "更新用户";
 
         }else{
-            sqlStatement = "Insert tb_user(userid,username,pass) values ('"
+            sqlStatement = "Insert into tb_user(userid,username,pass) values ('"
                        + objuser.getUserid() + "','" + objuser.getUsername() + "','" + objuser.getPass()
                        + "')";
             infoStr = "添加用户";
@@ -209,7 +209,7 @@ public class JdbcAdapter {
             infoStr = "更新教师信息";
 
         }else{
-            sqlStatement = "Insert tb_teacher(teaid,classID,teaname,sex,knowledge,knowlevel) values ('" + objteacher.getTeaid()
+            sqlStatement = "Insert into tb_teacher(teaid,classID,teaname,sex,knowledge,knowlevel) values ('" + objteacher.getTeaid()
                            + "','" +  objteacher.getClassID()
                            + "','" + objteacher.getTeaname()
                            + "','" + objteacher.getSex()
@@ -264,7 +264,7 @@ public class JdbcAdapter {
 
                 }else{
                     sqlStr =
-                       "insert  tb_gradeinfo_sub(stuid,stuname,kindID,code,grade,examdate)  values ('" +
+                       "insert  into tb_gradeinfo_sub(stuid,stuname,kindID,code,grade,examdate)  values ('" +
                        object[i].getStuid() + "','" + object[i].getSutname() +
                        "','" + object[i].getKindID() + "','" +
                        object[i].getCode() +

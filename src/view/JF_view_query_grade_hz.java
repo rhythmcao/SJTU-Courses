@@ -34,7 +34,6 @@ public class JF_view_query_grade_hz extends JInternalFrame {
     JButton jByes = new JButton();
     JButton jBexit = new JButton();
 
-    //////////////////
     String gradeid[] = null;
     String gradename[] = null;
     String examkindid[] = null;
@@ -72,7 +71,6 @@ public class JF_view_query_grade_hz extends JInternalFrame {
         jPanel1.add(jByes);
         jPanel1.add(jBexit);
         this.getContentPane().add(jLabel1, java.awt.BorderLayout.SOUTH);
-
         this.getContentPane().add(jPanel1, java.awt.BorderLayout.NORTH);
         this.setSize(680,460);
         this.setVisible(true);
