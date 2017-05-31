@@ -162,8 +162,8 @@ public class AppMain extends JFrame {
 	}
 
 	private void BuildToolBar() {
-		String ImageName[] = { "科目设置.GIF", "班级设置.GIF", "添加学生.GIF", "录入成绩.GIF", "基本查询.GIF", "成绩明细.GIF", "年级汇总.GIF",
-				"系统退出.GIF" };
+		String ImageName[] = { "科目设置.jpg", "班级设置.jpg", "添加学生.jpg", "录入成绩.jpg", "基本查询.jpg", "成绩明细.jpg", "年级汇总.jpg",
+				"系统退出.jpg" };
 
 		String TipString[] = { "成绩科目设置", "学生班级设置", "添加学生", "录入考试成绩", "基本信息查询", "考试成绩明细查询", "年级成绩汇总", "系统退出" };
 
