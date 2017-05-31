@@ -101,7 +101,7 @@ public class JF_view_gradesub extends JInternalFrame {
         this.getContentPane().add(jPanel2, java.awt.BorderLayout.NORTH);
 
         this.getContentPane().add(jSplitPane1, java.awt.BorderLayout.CENTER);
-        setSize(700,500);
+        setSize(750,500);
         setVisible(true);
         jSplitPane1.setDividerLocation(159);
     }
