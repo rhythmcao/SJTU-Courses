@@ -1,4 +1,6 @@
-# This is a database project implementing student management system.
+# This is a database project implementing 
+
+# Student Management System.
 =====================================================================
 ## Project Structure
 ---------------------------------------------------------------------
