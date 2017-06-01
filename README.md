@@ -3,24 +3,32 @@
 ## Project Structure
 ---------------------------------------------------------------------
 > images: Images used in this project
+>
 > src: Source code
 >> data: package containing classes to auto-generate sql data
+>>
 >> model: package containing classes providing data structures to store objects for various tables
+>>
 >> util: package containing classes used to manipulate sql operations and provide interfaces
+>>
 >> view: package containing classes used to construct GUI Jframes
+>>
 >> AppStu.java: entrance class
+
 > createdb.sql: sql script file, create database db_student and some initializations
 ----------------------------------------------------------------------
 ## To run this project
 1. Download and install MySQL, run the createdb.sql script to create database db_student
 2. Run /src/data/ConnectToMySQL.java to autogenerate data
 3. Run /src/AppStu.java
+
 __Attention__: 
-In ConnectToMySQL.java and AppStu.java, access to MySQL with USER='root' and PASSWORD='123456'. Maybe you need to change it.
+In ConnectToMySQL.java and AppStu.java, we access MySQL with USER='root' and PASSWORD='123456'. Maybe you need to change it.
 -----------------------------------------------------------------------
 ## Initial login account
-userid: admin
-password: 
+>userid: admin
+>
+>password: 
 * no pass word
 -----------------------------------------------------------------------
 ## Other stuff
