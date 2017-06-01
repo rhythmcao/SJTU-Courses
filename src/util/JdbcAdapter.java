@@ -89,7 +89,6 @@ public class JdbcAdapter {
         System.out.println(sqlStatement);
         return AdapterObject(sqlStatement);
     }
-
     public boolean InsertOrUpdateObject(Obj_classinfo objclassinfo){
         String sqlStatement = null;
         if (validateID("classID","tb_classinfo",objclassinfo.getClassID())){
@@ -158,9 +157,7 @@ public class JdbcAdapter {
                        + "')";
             infoStr = "添加用户";
         }
-
         return AdapterObject(sqlStatement);
-
     }
     //产生更新存盘学生信息语句
     public boolean InsertOrUpdateObject(Obj_student objstudent){

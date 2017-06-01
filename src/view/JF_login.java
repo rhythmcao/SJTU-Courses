@@ -16,6 +16,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
 import javax.swing.BorderFactory;
 import javax.swing.border.EtchedBorder;
+
+import util.JdbcAdapter;
+
 import javax.swing.border.Border;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -131,7 +134,6 @@ public class JF_login extends JFrame {
 		}
 
 	}
-
 	public void jBlogin_actionPerformed(ActionEvent e) {
 		String pass = String.valueOf(jPasswordField1.getPassword());
 		String sqlSelect = "select count(*) from tb_user where userid = '" + jTextField1.getText().trim()
@@ -150,7 +152,6 @@ public class JF_login extends JFrame {
 		}
 	}
 }
-
 class JF_login_jBlogin_actionAdapter implements ActionListener {
 	private JF_login adaptee;
 
