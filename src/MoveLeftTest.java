@@ -1,5 +1,9 @@
 import java.util.Random;
-
+/**
+ * 
+ * @author Ruisheng Cao
+ *
+ */
 public class MoveLeftTest {
 	/**
 	 * Perform a move in direction left on row blocks[i].
