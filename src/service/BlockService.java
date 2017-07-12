@@ -2,7 +2,6 @@ package service;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Point;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -181,23 +180,18 @@ public class BlockService {
 	 * @param blocks 
 	 */
 	public void moveControl(int keyCode) {
-		Direction direction = null;
 		// if down
 		if(keyCode == 40) {
-			direction = Direction.Down;
-			moveUpOrDown(direction);
+			moveDown();
 		}else if(keyCode == 38) {
 			// if up
-			direction = Direction.Up;
-			moveUpOrDown(direction);
+			moveUp();
 		}else if(keyCode == 37) {
 			// if left
-			direction = Direction.Left;
-			moveLeftOrRight(direction);
+			moveLeft();
 		}else if(keyCode == 39) {
 			// if right
-			direction = Direction.Right;
-			moveLeftOrRight(direction);
+			moveRight();
 		}
 	}
 	
@@ -315,165 +309,264 @@ public class BlockService {
 		this.frame.repaint();
 	}
 	
-	/**
-	 * move left or right
-	 */
-	private void moveLeftOrRight(Direction direction) {
-		int result = 0;
-		int jBegin = 1;
-		int jEnd = 4;
-		if(direction == Direction.Right) {
-			jBegin = 0;
-			jEnd = 3;
-		}
-		//先按列扫描
-		for(int j = jBegin;j < jEnd;j ++) {
-			for(int i = 0;i < 4;i ++) {
-				int vAxis = (direction == Direction.Right) ? 2 - j : j;
-				Panel panel = blocks[i][vAxis];
-				//当前块有数字
-				if(panel.getNum() != 0) {
-					Point nextPosition = getNextBlock(direction, i, vAxis);
-					Panel next = blocks[nextPosition.x][nextPosition.y];
-					//如果左面或右面没有方块，直接交换
-					if(next.getNum() == 0) {
-						changeBlock(next, panel.getNum());
-						changeBlock(panel, 0);
-					}else if(next.getNum() == panel.getNum()) {
-						//如果下一个位置的数字和当前的相等，那么相加并且当前的清零
-						result = next.getNum() << 1;
-						currentPoint += result;
-						if(currentPoint > maxPoint) {
-							maxPoint = currentPoint;
-							isMaxPointChanged = true;
-							setPoints(false, true, true, false);
-						}else {
-							setPoints(false, false, true, false);
+	private void moveLeft(){
+		int row=blocks.length;
+		int col=blocks[0].length;
+		int i=0,j=0,h=0,score=0;
+		boolean moveMade=false,succeed=false;
+		for(i=0;i<row;++i){
+			h=0;
+			for (j = 1; j < col; j++) {
+				if (blocks[i][j].getNum() == 0)
+					continue; /* skip blanks */
+				if (blocks[i][j].getNum() == blocks[i][h].getNum()) {
+					changeBlock(blocks[i][h],(blocks[i][h].getNum())<<1);
+					changeBlock(blocks[i][j],0);
+					score += blocks[i][h].getNum();
+					/*
+					 * merge with the previous same value: 
+					 * <x>, <0>, ..., <x>, ... --> (<x> + <x>), <0>, ..., <0>, ...
+					 */
+					moveMade = true;
+					if(blocks[i][h].getNum()==2048)
+						succeed=true;
+					h=h+1;
+				} else {
+					/*
+					 * different value, so that the value x at h already has its final value
+					 */
+					if (blocks[i][h].getNum() == 0) {
+						moveMade=true;
+						changeBlock(blocks[i][h], blocks[i][j].getNum());
+						changeBlock(blocks[i][j], 0);
+						/*
+						 * in this case, <0>, <0>, ..., <y>, ... --> <y>, <0>, ... <0>, ...
+						 */
+					} else {
+						h=h+1;
+						changeBlock(blocks[i][h], blocks[i][j].getNum());
+						/*
+						 * in this case, <x>, <0>, ..., <y>, ... --> <x>, <y>, ..., <0>, ...
+						 */
+						if (h != j) {
+							moveMade = true;
+							changeBlock(blocks[i][j], 0);
 						}
-						changeBlock(next, result);
-						changeBlock(panel, 0);
-						// determine whether 2048 is obtained
-						if(result == 2048) {
-							succeed();
-						}
-					}else {
-						//不相等，直接移动到下一个的左方或右方
-						int nextPos = (direction == Direction.Right) ? nextPosition.y - 1 : nextPosition.y + 1;
-						//如果下一个位置不是当前位置
-						if(i != nextPosition.x || vAxis != nextPos) {
-							changeBlock(blocks[nextPosition.x][nextPos], panel.getNum());
-							changeBlock(panel, 0);
-						}
+						/* if h == j, nothing is changed */
 					}
 				}
 			}
 		}
-		if(result < 2048) {
-			addBlock();
+		score=(moveMade)?score:-1;
+		if(score>=0){
+			currentPoint += score;
+			if(currentPoint > maxPoint) {
+				maxPoint = currentPoint;
+				isMaxPointChanged = true;
+				setPoints(false, true, true, false);
+			}else {
+				setPoints(false, false, true, false);
+			}
+			if(!succeed)
+				addBlock();
+			else
+				succeed();
 		}
 	}
 
-	/**
-	 * 上下移
-	 */
-	private void moveUpOrDown(Direction direction) {
-		int result = 0;
-		int iBegin = 0;
-		int iEnd = 3;
-		if(direction == Direction.Up) {
-			iBegin = 1;
-			iEnd = 4;
-		}
-		for(int i = iBegin;i < iEnd;i ++) {
-			for(int j = 0;j < 4;j ++) {
-				int hAxis = (direction == Direction.Down) ? 2 - i : i;
-				Panel panel = blocks[hAxis][j];
-				//当前块有数字
-				if(panel.getNum() != 0) {
-					Point nextPosition = getNextBlock(direction, hAxis, j);
-					Panel next = blocks[nextPosition.x][nextPosition.y];
-					//如果下面没有方块，直接交换
-					if(next.getNum() == 0) {
-						changeBlock(next, panel.getNum());
-						changeBlock(panel, 0);
-					}else if(next.getNum() == panel.getNum()) {
-						//如果下一个位置的数字和当前的相等，那么相加并且当前的清零
-						result = next.getNum() << 1;
-						currentPoint += result;
-						if(currentPoint > maxPoint) {
-							maxPoint = currentPoint;
-							isMaxPointChanged = true;
-							setPoints(false, true, true, false);
-						}else {
-							setPoints(false, false, true, false);
+	private void moveRight(){
+		int row=blocks.length;
+		int col=blocks[0].length;
+		int i=0,j=0,h=col-1,score=0;
+		boolean moveMade=false,succeed=false;
+		for(i=0;i<row;++i){
+			h=col-1;
+			for (j = col-2; j > -1; j--) {
+				if (blocks[i][j].getNum() == 0)
+					continue; /* skip blanks */
+				if (blocks[i][j].getNum() == blocks[i][h].getNum()) {
+					changeBlock(blocks[i][h],blocks[i][h].getNum()<<1);
+					score += blocks[i][h].getNum();
+					/*
+					 * merge with the previous same value: 
+					 * <x>, <0>, ..., <x>, ... --> (<x> + <x>), <0>, ..., <0>, ...
+					 */
+					moveMade = true;
+					changeBlock(blocks[i][j],0);
+					if(blocks[i][h].getNum()==2048)
+						succeed=true;
+					h=h-1;
+				} else {
+					/*
+					 * different value, so that the value x at h already has its final value
+					 */
+					if (blocks[i][h].getNum() == 0) {
+						moveMade=true;
+						changeBlock(blocks[i][h], blocks[i][j].getNum());
+						/*
+						 * in this case, <0>, <0>, ..., <y>, ... --> <y>, <0>, ... <0>, ...
+						 */
+						changeBlock(blocks[i][j], 0);
+					} else {
+						h=h-1;
+						changeBlock(blocks[i][h], blocks[i][j].getNum());
+						/*
+						 * in this case, <x>, <0>, ..., <y>, ... --> <x>, <y>, ..., <0>, ...
+						 */
+						if (h != j) {
+							moveMade = true;
+							changeBlock(blocks[i][j], 0);
 						}
-						changeBlock(next, result);
-						changeBlock(panel, 0);
-						//判断是否达到2048
-						if(result == 2048) {
-							succeed();
-						}
-					}else {
-						//不相等，直接移动到下一个的上方或下方
-						int nextPos = (direction == Direction.Down) ? nextPosition.x - 1 : nextPosition.x + 1;
-						//如果下一个位置不是当前位置
-						if(hAxis != nextPos || j != nextPosition.y) {
-							changeBlock(blocks[nextPos][nextPosition.y], panel.getNum());
-							changeBlock(panel, 0);
-						}
+						/* if h == j, nothing is changed */
 					}
 				}
 			}
 		}
-		if(result < 2048) {
-			addBlock();
+		score=(moveMade)?score:-1;
+		if(score>=0){
+			currentPoint += score;
+			if(currentPoint > maxPoint) {
+				maxPoint = currentPoint;
+				isMaxPointChanged = true;
+				setPoints(false, true, true, false);
+			}else {
+				setPoints(false, false, true, false);
+			}
+			if(!succeed)
+				addBlock();
+			else
+				succeed();
 		}
 	}
 
-	/**
-	 * 获取下一个移动到的位置
-	 */
-	private Point getNextBlock(Direction direction, int i, int j) {
-		switch (direction) {
-		case Down:
-			for(int m = i + 1;m < 4;m ++) {
-				Panel panel = blocks[m][j];
-				//找到不为零的立即返回或者是最后一行
-				if(panel.getNum() != 0 || m == 3) {
-					return new Point(m, j);
+	private void moveUp(){
+		int row=blocks.length;
+		int col=blocks[0].length;
+		int i=0,j=0,h=0,score=0;
+		boolean moveMade=false,succeed=false;
+		for(i=0;i<col;++i){
+			h=0;
+			for (j = 1; j < row; j++) {
+				if (blocks[j][i].getNum() == 0)
+					continue; /* skip blanks */
+				if (blocks[j][i].getNum() == blocks[h][i].getNum()) {
+					changeBlock(blocks[h][i],blocks[h][i].getNum()<<1);
+					score += blocks[h][i].getNum();
+					/*
+					 * merge with the previous same value: 
+					 * <x>, <0>, ..., <x>, ... --> (<x> + <x>), <0>, ..., <0>, ...
+					 */
+					moveMade = true;
+					changeBlock(blocks[j][i],0);
+					if(blocks[h][i].getNum()==2048)
+						succeed=true;
+					h=h+1;
+				} else {
+					/*
+					 * different value, so that the value x at h already has its final value
+					 */
+					if (blocks[h][i].getNum() == 0) {
+						moveMade=true;
+						changeBlock(blocks[h][i], blocks[j][i].getNum());
+						/*
+						 * in this case, <0>, <0>, ..., <y>, ... --> <y>, <0>, ... <0>, ...
+						 */
+						changeBlock(blocks[j][i], 0);
+					} else {
+						h=h+1;
+						changeBlock(blocks[h][i], blocks[j][i].getNum());
+						/*
+						 * in this case, <x>, <0>, ..., <y>, ... --> <x>, <y>, ..., <0>, ...
+						 */
+						if (h != j) {
+							moveMade = true;
+							changeBlock(blocks[j][i], 0);
+						}
+						/* if h == j, nothing is changed */
+					}
 				}
 			}
-			break;
-		case Up:
-			for(int m = i - 1;m >= 0;m --) {
-				Panel panel = blocks[m][j];
-				//找到不为零的立即返回或者是第一行
-				if(panel.getNum() != 0 || m == 0) {
-					return new Point(m, j);
-				}
-			}
-			break;
-		case Left:
-			for(int m = j - 1;m >= 0;m --) {
-				Panel panel = blocks[i][m];
-				//找到不为零的立即返回或者是第一列
-				if(panel.getNum() != 0 || m == 0) {
-					return new Point(i, m);
-				}
-			}
-			break;
-		case Right:
-			for(int m = j + 1;m < 4;m ++) {
-				Panel panel = blocks[i][m];
-				//找到不为零的立即返回或者是最后一列
-				if(panel.getNum() != 0 || m == 3) {
-					return new Point(i, m);
-				}
-			}
-		default:
-			break;
 		}
-		return null;
+		score=(moveMade)?score:-1;
+		if(score>=0){
+			currentPoint += score;
+			if(currentPoint > maxPoint) {
+				maxPoint = currentPoint;
+				isMaxPointChanged = true;
+				setPoints(false, true, true, false);
+			}else {
+				setPoints(false, false, true, false);
+			}
+			if(!succeed)
+				addBlock();
+			else
+				succeed();
+		}
+	}
+
+	private void moveDown(){
+		int row=blocks.length;
+		int col=blocks[0].length;
+		int i=0,j=0,h=row-1,score=0;
+		boolean moveMade=false,succeed=false;
+		for(i=0;i<col;++i){
+			h=row-1;
+			for (j = row-2; j > -1; j--) {
+				if (blocks[j][i].getNum() == 0)
+					continue; /* skip blanks */
+				if (blocks[j][i].getNum() == blocks[h][i].getNum()) {
+					changeBlock(blocks[h][i],blocks[h][i].getNum()<<1);
+					score += blocks[h][i].getNum();
+					/*
+					 * merge with the previous same value: 
+					 * <x>, <0>, ..., <x>, ... --> (<x> + <x>), <0>, ..., <0>, ...
+					 */
+					moveMade = true;
+					changeBlock(blocks[j][i],0);
+					if(blocks[h][i].getNum()==2048)
+						succeed=true;
+					h=h-1;
+				} else {
+					/*
+					 * different value, so that the value x at h already has its final value
+					 */
+					if (blocks[h][i].getNum() == 0) {
+						moveMade=true;
+						changeBlock(blocks[h][i], blocks[j][i].getNum());
+						/*
+						 * in this case, <0>, <0>, ..., <y>, ... --> <y>, <0>, ... <0>, ...
+						 */
+						changeBlock(blocks[j][i], 0);
+					} else {
+						h=h-1;
+						changeBlock(blocks[h][i], blocks[j][i].getNum());
+						/*
+						 * in this case, <x>, <0>, ..., <y>, ... --> <x>, <y>, ..., <0>, ...
+						 */
+						if (h != j) {
+							moveMade = true;
+							changeBlock(blocks[j][i], 0);
+						}
+						/* if h == j, nothing is changed */
+					}
+				}
+			}
+		}
+		score=(moveMade)?score:-1;
+		if(score>=0){
+			currentPoint += score;
+			if(currentPoint > maxPoint) {
+				maxPoint = currentPoint;
+				isMaxPointChanged = true;
+				setPoints(false, true, true, false);
+			}else {
+				setPoints(false, false, true, false);
+			}
+			if(!succeed)
+				addBlock();
+			else
+				succeed();
+		}
 	}
 	
 }
