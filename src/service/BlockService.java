@@ -214,9 +214,11 @@ public class BlockService {
 			// test whether the game is failed
 			gameOver();
 		}else {
-			Random rand=new Random();
-			int num=(rand.nextInt(2)==0)?2:4;
-			changeBlock(nulls.get(random.nextInt(size)), num);
+			if (size > 0) {
+				Random rand = new Random();
+				int num = (rand.nextInt(2) == 0) ? 2 : 4;
+				changeBlock(nulls.get(random.nextInt(size)), num);
+			}
 		}
 	}
 	
