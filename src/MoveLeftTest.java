@@ -3,7 +3,7 @@ import java.util.Random;
 public class MoveLeftTest {
 	/**
 	 * Perform a move in direction left on row blocks[i].
-	 * Return scores gained in this movement (-1 if no movement is made).
+	 * Return the points gained for this move(-1 if no movement is made).
 	 **/
 	public int moveLeft(int[][] blocks, int i) {
 		int size = blocks[i].length; // in typical case: 4
@@ -26,28 +26,33 @@ public class MoveLeftTest {
 			if (blocks[i][j] == 0)
 				continue; /* skip blanks */
 			if (blocks[i][j] == blocks[i][h]) {
-				score += (blocks[i][h++] += blocks[i][j]);
+				blocks[i][h]=blocks[i][h]<<1;
+				score += blocks[i][h];
+				blocks[i][j] = 0;
 				/*
 				 * merge with the previous same value: 
 				 * <x>, <0>, ..., <x>, ... --> (<x> + <x>), <0>, ..., <0>, ...
 				 */
 				moveMade = true;
-				blocks[i][j] = 0;
+				h=h+1;
 			} else {
 				/*
 				 * different value, so that the value x at h already has its final value
 				 */
 				if (blocks[i][h] == 0) {
 					blocks[i][h] = blocks[i][j];
+					blocks[i][j] = 0;
 					/*
 					 * in this case, <0>, <0>, ..., <y>, ... --> <y>, <0>, ... <0>, ...
+					 * we do not change h in this case
 					 */
-					blocks[i][j] = 0;
 					moveMade=true;
 				} else {
-					blocks[i][++h] = blocks[i][j];
+					h=h+1;
+					blocks[i][h] = blocks[i][j];
 					/*
 					 * in this case, <x>, <0>, ..., <y>, ... --> <x>, <y>, ..., <0>, ...
+					 * or <x>, <y>, ... --> <x>, <y>, ... (no change)
 					 */
 					if (h != j) {
 						moveMade = true;
