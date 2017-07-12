@@ -272,7 +272,7 @@ public class BlockService {
 	 */
 	public void gameOver() {
 		// restart or quit
-		int option = JOptionPane.showOptionDialog(null, "Sorry! Game is over!", "ÌבÊ¾", JOptionPane.DEFAULT_OPTION, 
+		int option = JOptionPane.showOptionDialog(null, "Sorry! Game is over!", "Info", JOptionPane.DEFAULT_OPTION, 
 				JOptionPane.QUESTION_MESSAGE, null, new Object[]{"restart", "quit"}, null);
 		switch (option) {
 		case 1:
