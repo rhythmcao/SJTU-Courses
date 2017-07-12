@@ -1,2 +1,1 @@
-# Game2048
-This is a Java progrram implementing simplified game 2048.
+# This is simplified runnable Game 2048 implmented in Java.
