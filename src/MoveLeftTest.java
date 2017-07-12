@@ -43,6 +43,7 @@ public class MoveLeftTest {
 					 * in this case, <0>, <0>, ..., <y>, ... --> <y>, <0>, ... <0>, ...
 					 */
 					blocks[i][j] = 0;
+					moveMade=true;
 				} else {
 					blocks[i][++h] = blocks[i][j];
 					/*
