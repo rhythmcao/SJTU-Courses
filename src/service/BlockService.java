@@ -210,7 +210,7 @@ public class BlockService {
 			}
 		}
 		int size = nulls.size();
-		if(size == 0 && isOver()) {
+		if(size == 0&&isOver()) {
 			// test whether the game is failed
 			gameOver();
 		}else {
@@ -373,6 +373,21 @@ public class BlockService {
 				addBlock();
 			else
 				succeed();
+		}else{
+			List<Panel> nulls = new ArrayList<Panel>();
+			for(i = 0;i < 4;i ++) {
+				for(j = 0;j< 4;j ++) {
+					Panel panel = blocks[i][j];
+					if(panel.getNum() == 0) {
+						nulls.add(panel);
+					}
+				}
+			}
+			int size = nulls.size();
+			if(size == 0&&isOver()) {
+				// test whether the game is failed
+				gameOver();
+			}
 		}
 	}
 
@@ -438,6 +453,21 @@ public class BlockService {
 				addBlock();
 			else
 				succeed();
+		}else{
+			List<Panel> nulls = new ArrayList<Panel>();
+			for(i = 0;i < 4;i ++) {
+				for( j = 0;j < 4;j ++) {
+					Panel panel = blocks[i][j];
+					if(panel.getNum() == 0) {
+						nulls.add(panel);
+					}
+				}
+			}
+			int size = nulls.size();
+			if(size == 0&&isOver()) {
+				// test whether the game is failed
+				gameOver();
+			}
 		}
 	}
 
@@ -503,6 +533,21 @@ public class BlockService {
 				addBlock();
 			else
 				succeed();
+		}else{
+			List<Panel> nulls = new ArrayList<Panel>();
+			for(i = 0;i < 4;i ++) {
+				for(j = 0;j < 4;j ++) {
+					Panel panel = blocks[i][j];
+					if(panel.getNum() == 0) {
+						nulls.add(panel);
+					}
+				}
+			}
+			int size = nulls.size();
+			if(size == 0&&isOver()) {
+				// test whether the game is failed
+				gameOver();
+			}
 		}
 	}
 
@@ -568,6 +613,21 @@ public class BlockService {
 				addBlock();
 			else
 				succeed();
+		}else{
+			List<Panel> nulls = new ArrayList<Panel>();
+			for(i = 0;i < 4;i ++) {
+				for( j = 0;j < 4;j ++) {
+					Panel panel = blocks[i][j];
+					if(panel.getNum() == 0) {
+						nulls.add(panel);
+					}
+				}
+			}
+			int size = nulls.size();
+			if(size == 0&&isOver()) {
+				// test whether the game is failed
+				gameOver();
+			}
 		}
 	}
 	
