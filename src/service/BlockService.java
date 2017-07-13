@@ -210,15 +210,12 @@ public class BlockService {
 			}
 		}
 		int size = nulls.size();
-		if(size == 0&&isOver()) {
-			// test whether the game is failed
-			gameOver();
-		}else {
-			if (size > 0) {
-				Random rand = new Random();
-				int num = (rand.nextInt(2) == 0) ? 2 : 4;
-				changeBlock(nulls.get(random.nextInt(size)), num);
-			}
+		if (size > 0) {
+			Random rand = new Random();
+			int num = (rand.nextInt(2) == 0) ? 2 : 4;
+			changeBlock(nulls.get(random.nextInt(size)), num);
+			if(size==1&&isOver())
+				gameOver();
 		}
 	}
 	
@@ -373,21 +370,6 @@ public class BlockService {
 				addBlock();
 			else
 				succeed();
-		}else{
-			List<Panel> nulls = new ArrayList<Panel>();
-			for(i = 0;i < 4;i ++) {
-				for(j = 0;j< 4;j ++) {
-					Panel panel = blocks[i][j];
-					if(panel.getNum() == 0) {
-						nulls.add(panel);
-					}
-				}
-			}
-			int size = nulls.size();
-			if(size == 0&&isOver()) {
-				// test whether the game is failed
-				gameOver();
-			}
 		}
 	}
 
@@ -453,21 +435,6 @@ public class BlockService {
 				addBlock();
 			else
 				succeed();
-		}else{
-			List<Panel> nulls = new ArrayList<Panel>();
-			for(i = 0;i < 4;i ++) {
-				for( j = 0;j < 4;j ++) {
-					Panel panel = blocks[i][j];
-					if(panel.getNum() == 0) {
-						nulls.add(panel);
-					}
-				}
-			}
-			int size = nulls.size();
-			if(size == 0&&isOver()) {
-				// test whether the game is failed
-				gameOver();
-			}
 		}
 	}
 
@@ -533,21 +500,6 @@ public class BlockService {
 				addBlock();
 			else
 				succeed();
-		}else{
-			List<Panel> nulls = new ArrayList<Panel>();
-			for(i = 0;i < 4;i ++) {
-				for(j = 0;j < 4;j ++) {
-					Panel panel = blocks[i][j];
-					if(panel.getNum() == 0) {
-						nulls.add(panel);
-					}
-				}
-			}
-			int size = nulls.size();
-			if(size == 0&&isOver()) {
-				// test whether the game is failed
-				gameOver();
-			}
 		}
 	}
 
@@ -613,21 +565,6 @@ public class BlockService {
 				addBlock();
 			else
 				succeed();
-		}else{
-			List<Panel> nulls = new ArrayList<Panel>();
-			for(i = 0;i < 4;i ++) {
-				for( j = 0;j < 4;j ++) {
-					Panel panel = blocks[i][j];
-					if(panel.getNum() == 0) {
-						nulls.add(panel);
-					}
-				}
-			}
-			int size = nulls.size();
-			if(size == 0&&isOver()) {
-				// test whether the game is failed
-				gameOver();
-			}
 		}
 	}
 	
