@@ -61,18 +61,18 @@ Some of the hyper parameters in `run/run_qnli_train.sh` are shown below:
 - `loss(str)`: `bce` or `ce`. Use `Linear(hidden_dim, 1)+sigmoid+BinaryCrossEntropy` or `Linear(hidden_dim, 2)+softmax+CrossEntropy` loss function.
 - `label_smoothing(float)`: to avoid over-confident about the classification, smoothing factor. For example, `label_smoothing=0.1`, then the target probability among true and wrong labels is 1-0.1+0.1/2=0.95 and 0.1/2=0.05 instead of 1.0 and 0. By default, `label_smoothing=0.0`, not use it.
 - `optim(str)`: `bertadam` or `adam`. If use `bertadam`, we should also specify `warmup` and `schedule` params.
-    - `warmup(float)`: warmup ratio introduced in paper *Attention is all you need*, default to $0.1$
+    - `warmup(float)`: warmup ratio introduced in paper *Attention is all you need*, default to 0.1
     - `schedule(str)`: choices among `warmup_linear`, `warmup_constant`, `warmup_cosine`, default is `warmup_linear`
 - `fix_bottom_layers(int)`: when `fix_bottom_layers=x`
     - if `x=-1 or 24`, finetune the params of the whole bert model
     - if `x=0`, we fix the embedding layer of bert model, only allow the rest layers to be finetuned
-    - if `0 < x < [bert-base=12, bert-large=24]`, we fix the bottom $x$ layers of bert model plus embedding layer, and allow the layers above $x$ to be trained
+    - if `0 < x < [bert-base=12, bert-large=24]`, we fix the bottom `x` layers of bert model plus embedding layer, and allow the layers above `x` to be trained
     - By default, `x=-1`
 - `ngpus(int)`: number of gpus to use in training. This number should be less than or equal to the total number of gpus available
 - `deviceId(int)`: select the main device
     - if `deviceId=-1`, we use cpu
     - if `deviceId=0`, auto select one gpu from the available list as the main gpu
-    - if `deviceId=x, x>0`, select the $x$-th gpu as the main device in `nn.DataParallel`
+    - if `deviceId=x, x>0`, select the `x-th` gpu as the main device in `nn.DataParallel`
 
 The training script will choose the best model on dev dataset, evaluate on test dataset and generate the target `QNLI.tsv` file. By the way, script `sbatch_job.sh` is an example to submit jobs in a cluster using slurm module for reference.
 
