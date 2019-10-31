@@ -23,13 +23,13 @@ The default proxy is "https://127.0.0.1:1080"
 Run script
 
 
-    ./pull_data.sh proxy_ip
+    ./pull_bert.sh proxy_ip
 
 
 or use default proxy "https://127.0.0.1:1080"
 
 
-    ./pull_data.sh
+    ./pull_bert.sh
 
 
 The script will download all the following pre-trained models to directory `data/.cache`
