@@ -1,0 +1,12 @@
+exp
+log
+data/.cache/
+data/backup/
+data/bc/
+submission.zip
+.vscode
+*/*/*/*/__pycache__/
+*/*/*/__pycache__/
+*/*/__pycache__/
+*/__pycache__/
+__pycache__/
