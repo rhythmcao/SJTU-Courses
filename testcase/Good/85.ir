@@ -1,0 +1,881 @@
+# Before canonicalization: 
+SEQ(
+ SEQ(
+  SEQ(
+   SEQ(
+    SEQ(
+     SEQ(
+      SEQ(
+       SEQ(
+        SEQ(
+         SEQ(
+          SEQ(
+           MOVE(
+            MEM(
+             BINOP(PLUS,
+              TEMP t29,
+              CONST 36)),
+            TEMP t30),
+           SEQ(
+            MOVE(
+             TEMP t30,
+             BINOP(PLUS,
+              TEMP t29,
+              CONST 44)),
+            SEQ(
+             MOVE(
+              MEM(
+               BINOP(PLUS,
+                TEMP t30,
+                CONST -12)),
+              TEMP t31),
+             SEQ(
+              MOVE(
+               MEM(
+                BINOP(PLUS,
+                 TEMP t30,
+                 CONST -44)),
+               TEMP t23),
+              SEQ(
+               MOVE(
+                MEM(
+                 BINOP(PLUS,
+                  TEMP t30,
+                  CONST -40)),
+                TEMP t22),
+               SEQ(
+                MOVE(
+                 MEM(
+                  BINOP(PLUS,
+                   TEMP t30,
+                   CONST -36)),
+                 TEMP t21),
+                SEQ(
+                 MOVE(
+                  MEM(
+                   BINOP(PLUS,
+                    TEMP t30,
+                    CONST -32)),
+                  TEMP t20),
+                 SEQ(
+                  MOVE(
+                   MEM(
+                    BINOP(PLUS,
+                     TEMP t30,
+                     CONST -28)),
+                   TEMP t19),
+                  SEQ(
+                   MOVE(
+                    MEM(
+                     BINOP(PLUS,
+                      TEMP t30,
+                      CONST -24)),
+                    TEMP t18),
+                   SEQ(
+                    MOVE(
+                     MEM(
+                      BINOP(PLUS,
+                       TEMP t30,
+                       CONST -20)),
+                     TEMP t17),
+                    SEQ(
+                     MOVE(
+                      MEM(
+                       BINOP(PLUS,
+                        TEMP t30,
+                        CONST -16)),
+                      TEMP t16),
+                     SEQ(
+                      MOVE(
+                       MEM(
+                        BINOP(PLUS,
+                         TEMP t30,
+                         CONST 0)),
+                       TEMP t4),
+                      SEQ(
+                       SEQ(
+                        SEQ(
+                         SEQ(
+                          EXP(
+                           CALL(
+                            NAME printi,
+                             ESEQ(
+                              SEQ(
+                               MOVE(
+                                TEMP t32,
+                                CONST 1),
+                               SEQ(
+                                CJUMP(LT,
+                                 CALL(
+                                  NAME stringCompare,
+                                   NAME L2,
+                                   NAME L3),
+                                 CONST 0,
+                                 L4,L5),
+                                SEQ(
+                                 LABEL L5,
+                                 SEQ(
+                                  MOVE(
+                                   TEMP t32,
+                                   CONST 0),
+                                  LABEL L4)))),
+                              TEMP t32))),
+                          EXP(
+                           CALL(
+                            NAME print,
+                             NAME L6))),
+                         EXP(
+                          CALL(
+                           NAME printi,
+                            ESEQ(
+                             SEQ(
+                              MOVE(
+                               TEMP t33,
+                               CONST 1),
+                              SEQ(
+                               CJUMP(NE,
+                                CALL(
+                                 NAME stringEqual,
+                                  NAME L9,
+                                  NAME L10),
+                                CONST 1,
+                                L11,L12),
+                               SEQ(
+                                LABEL L12,
+                                SEQ(
+                                 MOVE(
+                                  TEMP t33,
+                                  CONST 0),
+                                 LABEL L11)))),
+                             TEMP t33)))),
+                        EXP(
+                         CALL(
+                          NAME print,
+                           NAME L13))),
+                       EXP(
+                        CALL(
+                         NAME printi,
+                          ESEQ(
+                           SEQ(
+                            MOVE(
+                             TEMP t34,
+                             CONST 1),
+                            SEQ(
+                             CJUMP(GT,
+                              CALL(
+                               NAME stringCompare,
+                                NAME L16,
+                                NAME L17),
+                              CONST 0,
+                              L18,L19),
+                             SEQ(
+                              LABEL L19,
+                              SEQ(
+                               MOVE(
+                                TEMP t34,
+                                CONST 0),
+                               LABEL L18)))),
+                           TEMP t34)))))))))))))))),
+          MOVE(
+           TEMP t16,
+           MEM(
+            BINOP(PLUS,
+             TEMP t30,
+             CONST -16)))),
+         MOVE(
+          TEMP t17,
+          MEM(
+           BINOP(PLUS,
+            TEMP t30,
+            CONST -20)))),
+        MOVE(
+         TEMP t18,
+         MEM(
+          BINOP(PLUS,
+           TEMP t30,
+           CONST -24)))),
+       MOVE(
+        TEMP t19,
+        MEM(
+         BINOP(PLUS,
+          TEMP t30,
+          CONST -28)))),
+      MOVE(
+       TEMP t20,
+       MEM(
+        BINOP(PLUS,
+         TEMP t30,
+         CONST -32)))),
+     MOVE(
+      TEMP t21,
+      MEM(
+       BINOP(PLUS,
+        TEMP t30,
+        CONST -36)))),
+    MOVE(
+     TEMP t22,
+     MEM(
+      BINOP(PLUS,
+       TEMP t30,
+       CONST -40)))),
+   MOVE(
+    TEMP t23,
+    MEM(
+     BINOP(PLUS,
+      TEMP t30,
+      CONST -44)))),
+  MOVE(
+   TEMP t31,
+   MEM(
+    BINOP(PLUS,
+     TEMP t30,
+     CONST -12)))),
+ MOVE(
+  TEMP t30,
+  MEM(
+   BINOP(PLUS,
+    TEMP t29,
+    CONST 36))))
+
+# After canonicalization:
+ MOVE(
+ MEM(
+  BINOP(PLUS,
+   TEMP t29,
+   CONST 36)),
+ TEMP t30)
+MOVE(
+ TEMP t30,
+ BINOP(PLUS,
+  TEMP t29,
+  CONST 44))
+MOVE(
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -12)),
+ TEMP t31)
+MOVE(
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -44)),
+ TEMP t23)
+MOVE(
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -40)),
+ TEMP t22)
+MOVE(
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -36)),
+ TEMP t21)
+MOVE(
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -32)),
+ TEMP t20)
+MOVE(
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -28)),
+ TEMP t19)
+MOVE(
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -24)),
+ TEMP t18)
+MOVE(
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -20)),
+ TEMP t17)
+MOVE(
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -16)),
+ TEMP t16)
+MOVE(
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST 0)),
+ TEMP t4)
+MOVE(
+ TEMP t32,
+ CONST 1)
+MOVE(
+ TEMP t35,
+ CALL(
+  NAME stringCompare,
+   NAME L2,
+   NAME L3))
+CJUMP(LT,
+ TEMP t35,
+ CONST 0,
+ L4,L5)
+LABEL L5
+MOVE(
+ TEMP t32,
+ CONST 0)
+LABEL L4
+EXP(
+ CALL(
+  NAME printi,
+   TEMP t32))
+EXP(
+ CALL(
+  NAME print,
+   NAME L6))
+MOVE(
+ TEMP t33,
+ CONST 1)
+MOVE(
+ TEMP t36,
+ CALL(
+  NAME stringEqual,
+   NAME L9,
+   NAME L10))
+CJUMP(NE,
+ TEMP t36,
+ CONST 1,
+ L11,L12)
+LABEL L12
+MOVE(
+ TEMP t33,
+ CONST 0)
+LABEL L11
+EXP(
+ CALL(
+  NAME printi,
+   TEMP t33))
+EXP(
+ CALL(
+  NAME print,
+   NAME L13))
+MOVE(
+ TEMP t34,
+ CONST 1)
+MOVE(
+ TEMP t37,
+ CALL(
+  NAME stringCompare,
+   NAME L16,
+   NAME L17))
+CJUMP(GT,
+ TEMP t37,
+ CONST 0,
+ L18,L19)
+LABEL L19
+MOVE(
+ TEMP t34,
+ CONST 0)
+LABEL L18
+EXP(
+ CALL(
+  NAME printi,
+   TEMP t34))
+MOVE(
+ TEMP t16,
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -16)))
+MOVE(
+ TEMP t17,
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -20)))
+MOVE(
+ TEMP t18,
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -24)))
+MOVE(
+ TEMP t19,
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -28)))
+MOVE(
+ TEMP t20,
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -32)))
+MOVE(
+ TEMP t21,
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -36)))
+MOVE(
+ TEMP t22,
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -40)))
+MOVE(
+ TEMP t23,
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -44)))
+MOVE(
+ TEMP t31,
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -12)))
+MOVE(
+ TEMP t30,
+ MEM(
+  BINOP(PLUS,
+   TEMP t29,
+   CONST 36)))
+
+# Basic Blocks: 
+#
+LABEL L21
+MOVE(
+ MEM(
+  BINOP(PLUS,
+   TEMP t29,
+   CONST 36)),
+ TEMP t30)
+MOVE(
+ TEMP t30,
+ BINOP(PLUS,
+  TEMP t29,
+  CONST 44))
+MOVE(
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -12)),
+ TEMP t31)
+MOVE(
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -44)),
+ TEMP t23)
+MOVE(
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -40)),
+ TEMP t22)
+MOVE(
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -36)),
+ TEMP t21)
+MOVE(
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -32)),
+ TEMP t20)
+MOVE(
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -28)),
+ TEMP t19)
+MOVE(
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -24)),
+ TEMP t18)
+MOVE(
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -20)),
+ TEMP t17)
+MOVE(
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -16)),
+ TEMP t16)
+MOVE(
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST 0)),
+ TEMP t4)
+MOVE(
+ TEMP t32,
+ CONST 1)
+MOVE(
+ TEMP t35,
+ CALL(
+  NAME stringCompare,
+   NAME L2,
+   NAME L3))
+CJUMP(LT,
+ TEMP t35,
+ CONST 0,
+ L4,L5)
+#
+LABEL L5
+MOVE(
+ TEMP t32,
+ CONST 0)
+JUMP(
+ NAME L4)
+#
+LABEL L4
+EXP(
+ CALL(
+  NAME printi,
+   TEMP t32))
+EXP(
+ CALL(
+  NAME print,
+   NAME L6))
+MOVE(
+ TEMP t33,
+ CONST 1)
+MOVE(
+ TEMP t36,
+ CALL(
+  NAME stringEqual,
+   NAME L9,
+   NAME L10))
+CJUMP(NE,
+ TEMP t36,
+ CONST 1,
+ L11,L12)
+#
+LABEL L12
+MOVE(
+ TEMP t33,
+ CONST 0)
+JUMP(
+ NAME L11)
+#
+LABEL L11
+EXP(
+ CALL(
+  NAME printi,
+   TEMP t33))
+EXP(
+ CALL(
+  NAME print,
+   NAME L13))
+MOVE(
+ TEMP t34,
+ CONST 1)
+MOVE(
+ TEMP t37,
+ CALL(
+  NAME stringCompare,
+   NAME L16,
+   NAME L17))
+CJUMP(GT,
+ TEMP t37,
+ CONST 0,
+ L18,L19)
+#
+LABEL L19
+MOVE(
+ TEMP t34,
+ CONST 0)
+JUMP(
+ NAME L18)
+#
+LABEL L18
+EXP(
+ CALL(
+  NAME printi,
+   TEMP t34))
+MOVE(
+ TEMP t16,
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -16)))
+MOVE(
+ TEMP t17,
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -20)))
+MOVE(
+ TEMP t18,
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -24)))
+MOVE(
+ TEMP t19,
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -28)))
+MOVE(
+ TEMP t20,
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -32)))
+MOVE(
+ TEMP t21,
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -36)))
+MOVE(
+ TEMP t22,
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -40)))
+MOVE(
+ TEMP t23,
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -44)))
+MOVE(
+ TEMP t31,
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -12)))
+MOVE(
+ TEMP t30,
+ MEM(
+  BINOP(PLUS,
+   TEMP t29,
+   CONST 36)))
+JUMP(
+ NAME L20)
+LABEL L20
+
+# Trace Scheduled: 
+
+LABEL L21
+MOVE(
+ MEM(
+  BINOP(PLUS,
+   TEMP t29,
+   CONST 36)),
+ TEMP t30)
+MOVE(
+ TEMP t30,
+ BINOP(PLUS,
+  TEMP t29,
+  CONST 44))
+MOVE(
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -12)),
+ TEMP t31)
+MOVE(
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -44)),
+ TEMP t23)
+MOVE(
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -40)),
+ TEMP t22)
+MOVE(
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -36)),
+ TEMP t21)
+MOVE(
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -32)),
+ TEMP t20)
+MOVE(
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -28)),
+ TEMP t19)
+MOVE(
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -24)),
+ TEMP t18)
+MOVE(
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -20)),
+ TEMP t17)
+MOVE(
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -16)),
+ TEMP t16)
+MOVE(
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST 0)),
+ TEMP t4)
+MOVE(
+ TEMP t32,
+ CONST 1)
+MOVE(
+ TEMP t35,
+ CALL(
+  NAME stringCompare,
+   NAME L2,
+   NAME L3))
+CJUMP(LT,
+ TEMP t35,
+ CONST 0,
+ L4,L5)
+LABEL L5
+MOVE(
+ TEMP t32,
+ CONST 0)
+LABEL L4
+EXP(
+ CALL(
+  NAME printi,
+   TEMP t32))
+EXP(
+ CALL(
+  NAME print,
+   NAME L6))
+MOVE(
+ TEMP t33,
+ CONST 1)
+MOVE(
+ TEMP t36,
+ CALL(
+  NAME stringEqual,
+   NAME L9,
+   NAME L10))
+CJUMP(NE,
+ TEMP t36,
+ CONST 1,
+ L11,L12)
+LABEL L12
+MOVE(
+ TEMP t33,
+ CONST 0)
+LABEL L11
+EXP(
+ CALL(
+  NAME printi,
+   TEMP t33))
+EXP(
+ CALL(
+  NAME print,
+   NAME L13))
+MOVE(
+ TEMP t34,
+ CONST 1)
+MOVE(
+ TEMP t37,
+ CALL(
+  NAME stringCompare,
+   NAME L16,
+   NAME L17))
+CJUMP(GT,
+ TEMP t37,
+ CONST 0,
+ L18,L19)
+LABEL L19
+MOVE(
+ TEMP t34,
+ CONST 0)
+LABEL L18
+EXP(
+ CALL(
+  NAME printi,
+   TEMP t34))
+MOVE(
+ TEMP t16,
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -16)))
+MOVE(
+ TEMP t17,
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -20)))
+MOVE(
+ TEMP t18,
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -24)))
+MOVE(
+ TEMP t19,
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -28)))
+MOVE(
+ TEMP t20,
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -32)))
+MOVE(
+ TEMP t21,
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -36)))
+MOVE(
+ TEMP t22,
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -40)))
+MOVE(
+ TEMP t23,
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -44)))
+MOVE(
+ TEMP t31,
+ MEM(
+  BINOP(PLUS,
+   TEMP t30,
+   CONST -12)))
+MOVE(
+ TEMP t30,
+ MEM(
+  BINOP(PLUS,
+   TEMP t29,
+   CONST 36)))
+JUMP(
+ NAME L20)
+LABEL L20

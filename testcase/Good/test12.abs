@@ -1,0 +1,26 @@
+LetExp(
+ DecList(
+  VarDec(a,
+   IntExp(0),
+   true),
+  DecList()),
+ SeqExp(
+  ExpList(
+   ForExp(
+    VarDec(i,
+     int,
+     IntExp(0),
+     true),
+    IntExp(100),
+    SeqExp(
+     ExpList(
+      AssignExp(
+       SimpleVar(a),
+       OpExp(
+        PLUS,
+        varExp(
+         SimpleVar(a)),
+        IntExp(1))),
+      ExpList(
+       SeqExp(
+        ExpList()))))))))

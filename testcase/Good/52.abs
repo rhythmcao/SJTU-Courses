@@ -1,0 +1,22 @@
+LetExp(
+ DecList(
+  VarDec(a,
+   IntExp(0),
+   true),
+  DecList(
+   FunctionDec(g
+    Fieldlist(
+     a
+     int,
+     true,
+     Fieldlist()),
+    int
+    varExp(
+     SimpleVar(a)),
+    FunctionDec()),
+   DecList())),
+ SeqExp(
+  ExpList(
+   CallExp(g,
+    ExpList(
+     IntExp(2))))))

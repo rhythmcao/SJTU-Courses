@@ -1,0 +1,35 @@
+LetExp(
+ DecList(
+  VarDec(v,
+   StringExp(foo),
+   true),
+  DecList()),
+ SeqExp(
+  ExpList(
+   CallExp(print,
+    ExpList(
+     varExp(
+      SimpleVar(v)))),
+   ExpList(
+    LetExp(
+     DecList(
+      VarDec(v,
+       StringExp(bar),
+       true),
+      DecList()),
+     SeqExp(
+      ExpList(
+       CallExp(print,
+        ExpList(
+         varExp(
+          SimpleVar(v))))))),
+    ExpList(
+     CallExp(print,
+      ExpList(
+       varExp(
+        SimpleVar(v)))),
+     ExpList(
+      CallExp(print,
+       ExpList(
+        StringExp(
+)))))))))

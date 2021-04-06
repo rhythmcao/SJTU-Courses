@@ -1,0 +1,17 @@
+LetExp(
+ DecList(
+  VarDec(s,
+   StringExp(Hello World!),
+   true),
+  DecList()),
+ SeqExp(
+  ExpList(
+   CallExp(print,
+    ExpList(
+     varExp(
+      SimpleVar(s)))),
+   ExpList(
+    CallExp(print,
+     ExpList(
+      StringExp(
+)))))))
