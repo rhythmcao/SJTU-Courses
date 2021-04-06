@@ -1,0 +1,30 @@
+package simpl.interpreter;
+
+import static simpl.parser.Symbol.symbol;
+import simpl.interpreter.lib.hd;
+import simpl.interpreter.lib.tl;
+import simpl.interpreter.lib.fst;
+import simpl.interpreter.lib.snd;
+import simpl.interpreter.pcf.iszero;
+import simpl.interpreter.pcf.pred;
+import simpl.interpreter.pcf.succ;
+
+public class InitialState extends State {
+
+    public InitialState() {
+        super(initialEnv(Env.empty), new Mem(), new Int(0));
+    }
+
+    private static Env initialEnv(Env E) {
+        //add lib Env
+        E = new Env(E, symbol("fst"), new fst());
+        E = new Env(E, symbol("snd"), new snd());
+        E = new Env(E, symbol("hd"), new hd());
+        E = new Env(E, symbol("tl"), new tl());
+        //add pcf Env
+        E = new Env(E, symbol("iszero"), new iszero());
+        E = new Env(E, symbol("pred"), new pred());
+        E = new Env(E, symbol("succ"), new succ());
+        return E;
+    }
+}
